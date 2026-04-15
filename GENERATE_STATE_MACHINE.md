@@ -88,21 +88,21 @@ python generate_state_machine.py --type Line --size 25
 Maze with LaTeX subscript labels:
 
 ```bash
-python generate_state_machine.py --type Maze --size 13 --labels "$s_0$,$s_1$,...,$s_{30}$"
+python generate_state_machine.py --type Maze --size 5 --labels "$s_0$,$s_1$,$s_2$,$s_3$,$s_4$,$s_5$,$s_6$,$s_7$,$s_8$,$s_9$,$s_{10}$"
 ```
 
 Grid with row-based coloring (row 2 red, last row white, rest green):
 
 ```bash
-# Build the color string for a 9x9 grid (81 states)
-# Row 2 = indices 18-26 = red, row 8 = indices 72-80 = white, all others = green
-python generate_state_machine.py --type Grid --size 9 --colors "green,...,red,...,green,...,white,..."
+# 5x5 grid (25 states): row 2 = indices 10-14 = red, row 4 = indices 20-24 = white, rest = green
+python generate_state_machine.py --type Grid --size 5 --colors "green,green,green,green,green,green,green,green,green,green,red,red,red,red,red,green,green,green,green,green,white,white,white,white,white"
 ```
 
 Maze with specific coloring and no self-loops:
 
 ```bash
-python generate_state_machine.py --type Maze --size 13 --colors "red,red,...,white,...,green,...,white" --no-self-loops
+# Maze size 5 (11 states): first 2 horizontal red, middle arm green, rest white
+python generate_state_machine.py --type Maze --size 5 --colors "red,red,white,white,white,white,white,green,green,white,white" --no-self-loops
 ```
 
 Maze without self-loops (transitions only with action labels):

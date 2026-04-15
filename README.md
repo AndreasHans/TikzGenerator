@@ -13,7 +13,7 @@ A collection of Python scripts for generating TikZ diagrams of automata and stat
 
 ```bash
 # State machine — 5x5 grid, center green, bottom row red
-python generate_state_machine.py --type Grid --size 5 --colors "white,...,green,...,red,..."
+python generate_state_machine.py --type Grid --size 5 --colors "white,white,white,white,white,white,white,white,white,white,white,white,green,white,white,white,white,white,white,white,red,red,red,red,red"
 
 # Mealy machine — 3 states with transitions, colors, and labels
 python generate_mealy_machine.py --states 3 --transitions "0,1,a,0;1,2,b,1;2,0,a,1" --colors "green,white,red" --labels '$q_0$,$q_1$,$q_2$'
