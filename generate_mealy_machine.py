@@ -36,20 +36,22 @@ def render_tikz(
     lines: List[str] = []
 
     lines.append("\\begin{tikzpicture}[")
+    lines.append("  scale=0.65,")
+    lines.append("  transform shape,")
     lines.append("  >=Latex,")
     lines.append(
-        "  state/.style={draw,circle,minimum size=10mm,inner sep=0pt,font=\\small},"
+        "  state/.style={draw,circle,minimum size=5mm,inner sep=0pt,font=\\scriptsize},"
     )
-    lines.append("  edge/.style={-Latex,thick},")
-    lines.append("  label/.style={font=\\small},")
-    lines.append("  node distance=25mm")
+    lines.append("  edge/.style={-Latex,thin},")
+    lines.append("  label/.style={font=\\tiny},")
+    lines.append("  node distance=7mm")
     lines.append("]")
     lines.append("")
 
     # Arrange states in a circle
     lines.append("% --- States")
     angle_step = 360.0 / num_states
-    radius = max(1.5, num_states * 0.6)
+    radius = max(1.0, num_states * 0.4)
     for i in range(num_states):
         angle = 90 - i * angle_step  # start at top, go clockwise
         x = radius * math.cos(math.radians(angle))
@@ -66,7 +68,7 @@ def render_tikz(
     lines.append("")
     lines.append("% --- Initial state")
     init_angle = 90 + angle_step * 0.0  # point toward s0 from outside
-    ix = radius * math.cos(math.radians(90)) + 1.2
+    ix = radius * math.cos(math.radians(90)) + 0.8
     iy = radius * math.sin(math.radians(90))
     lines.append(f"\\draw[edge] ({ix:.2f},{iy:.2f}) -- (s0);")
 
