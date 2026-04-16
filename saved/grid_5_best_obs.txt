@@ -1,0 +1,559 @@
+\begin{tikzpicture}[
+  scale=0.65,
+  transform shape,
+  >=Latex,
+  state/.style={draw,circle,minimum size=5mm,inner sep=0pt,font=\scriptsize},
+  edge/.style={-Latex,thin},
+  action/.style={font=\tiny},
+  node distance=7mm
+]
+
+% === Copy 0 === (top-left)
+\begin{scope}[xshift=0.0cm, yshift=0.0cm]
+% --- States (row 0)
+\node[state] (c0s0) {0};
+\node[state, right=of c0s0] (c0s1) {1};
+\node[state, right=of c0s1] (c0s2) {2};
+\node[state, right=of c0s2] (c0s3) {3};
+\node[state, right=of c0s3] (c0s4) {4};
+% --- States (row 1)
+\node[state, below=of c0s0] (c0s5) {5};
+\node[state, right=of c0s5] (c0s6) {6};
+\node[state, right=of c0s6] (c0s7) {7};
+\node[state, right=of c0s7] (c0s8) {8};
+\node[state, right=of c0s8] (c0s9) {9};
+% --- States (row 2)
+\node[state, below=of c0s5] (c0s10) {10};
+\node[state, right=of c0s10] (c0s11) {11};
+\node[state, right=of c0s11] (c0s12) {12};
+\node[state, right=of c0s12] (c0s13) {13};
+\node[state, fill=red!20, right=of c0s13] (c0s14) {14};
+% --- States (row 3)
+\node[state, below=of c0s10] (c0s15) {15};
+\node[state, right=of c0s15] (c0s16) {16};
+\node[state, right=of c0s16] (c0s17) {17};
+\node[state, right=of c0s17] (c0s18) {18};
+\node[state, right=of c0s18] (c0s19) {19};
+% --- States (row 4)
+\node[state, below=of c0s15] (c0s20) {20};
+\node[state, right=of c0s20] (c0s21) {21};
+\node[state, right=of c0s21] (c0s22) {22};
+\node[state, right=of c0s22] (c0s23) {23};
+\node[state, fill=green!20, right=of c0s23] (c0s24) {24};
+
+% --- Self-loops (perimeter states)
+\draw[edge] (c0s0) edge[loop above] node[action, above] {$L, U$} (c0s0);
+\draw[edge] (c0s1) edge[loop above] node[action, above] {$U$} (c0s1);
+\draw[edge] (c0s2) edge[loop above] node[action, above] {$U$} (c0s2);
+\draw[edge] (c0s3) edge[loop above] node[action, above] {$U$} (c0s3);
+\draw[edge] (c0s4) edge[loop above] node[action, above] {$R, U$} (c0s4);
+\draw[edge] (c0s5) edge[loop left] node[action, left] {$L$} (c0s5);
+\draw[edge] (c0s9) edge[loop right] node[action, right] {$R$} (c0s9);
+\draw[edge] (c0s10) edge[loop left] node[action, left] {$L$} (c0s10);
+\draw[edge] (c0s14) edge[loop right] node[action, right] {$R$} (c0s14);
+\draw[edge] (c0s15) edge[loop left] node[action, left] {$L$} (c0s15);
+\draw[edge] (c0s19) edge[loop right] node[action, right] {$R$} (c0s19);
+\draw[edge] (c0s20) edge[loop below] node[action, below] {$L, D$} (c0s20);
+\draw[edge] (c0s21) edge[loop below] node[action, below] {$D$} (c0s21);
+\draw[edge] (c0s22) edge[loop below] node[action, below] {$D$} (c0s22);
+\draw[edge] (c0s23) edge[loop below] node[action, below] {$D$} (c0s23);
+\draw[edge] (c0s24) edge[loop below] node[action, below] {$R, D$} (c0s24);
+
+% --- Horizontal transitions
+\draw[edge] (c0s0) edge[bend left=20] node[action, midway, above] {$R$} (c0s1);
+\draw[edge] (c0s1) edge[bend left=20] node[action, midway, below] {$L$} (c0s0);
+\draw[edge] (c0s1) edge[bend left=20] node[action, midway, above] {$R$} (c0s2);
+\draw[edge] (c0s2) edge[bend left=20] node[action, midway, below] {$L$} (c0s1);
+\draw[edge] (c0s2) edge[bend left=20] node[action, midway, above] {$R$} (c0s3);
+\draw[edge] (c0s3) edge[bend left=20] node[action, midway, below] {$L$} (c0s2);
+\draw[edge] (c0s3) edge[bend left=20] node[action, midway, above] {$R$} (c0s4);
+\draw[edge] (c0s4) edge[bend left=20] node[action, midway, below] {$L$} (c0s3);
+\draw[edge] (c0s5) edge[bend left=20] node[action, midway, above] {$R$} (c0s6);
+\draw[edge] (c0s6) edge[bend left=20] node[action, midway, below] {$L$} (c0s5);
+\draw[edge] (c0s6) edge[bend left=20] node[action, midway, above] {$R$} (c0s7);
+\draw[edge] (c0s7) edge[bend left=20] node[action, midway, below] {$L$} (c0s6);
+\draw[edge] (c0s7) edge[bend left=20] node[action, midway, above] {$R$} (c0s8);
+\draw[edge] (c0s8) edge[bend left=20] node[action, midway, below] {$L$} (c0s7);
+\draw[edge] (c0s8) edge[bend left=20] node[action, midway, above] {$R$} (c0s9);
+\draw[edge] (c0s9) edge[bend left=20] node[action, midway, below] {$L$} (c0s8);
+\draw[edge] (c0s10) edge[bend left=20] node[action, midway, above] {$R$} (c0s11);
+\draw[edge] (c0s11) edge[bend left=20] node[action, midway, below] {$L$} (c0s10);
+\draw[edge] (c0s11) edge[bend left=20] node[action, midway, above] {$R$} (c0s12);
+\draw[edge] (c0s12) edge[bend left=20] node[action, midway, below] {$L$} (c0s11);
+\draw[edge] (c0s12) edge[bend left=20] node[action, midway, above] {$R$} (c0s13);
+\draw[edge] (c0s13) edge[bend left=20] node[action, midway, below] {$L$} (c0s12);
+\draw[edge] (c0s13) edge[bend left=20] node[action, midway, above] {$R$} (c0s14);
+\draw[edge] (c0s14) edge[bend left=20] node[action, midway, below] {$L$} (c0s13);
+\draw[edge] (c0s15) edge[bend left=20] node[action, midway, above] {$R$} (c0s16);
+\draw[edge] (c0s16) edge[bend left=20] node[action, midway, below] {$L$} (c0s15);
+\draw[edge] (c0s16) edge[bend left=20] node[action, midway, above] {$R$} (c0s17);
+\draw[edge] (c0s17) edge[bend left=20] node[action, midway, below] {$L$} (c0s16);
+\draw[edge] (c0s17) edge[bend left=20] node[action, midway, above] {$R$} (c0s18);
+\draw[edge] (c0s18) edge[bend left=20] node[action, midway, below] {$L$} (c0s17);
+\draw[edge] (c0s18) edge[bend left=20] node[action, midway, above] {$R$} (c0s19);
+\draw[edge] (c0s19) edge[bend left=20] node[action, midway, below] {$L$} (c0s18);
+\draw[edge] (c0s20) edge[bend left=20] node[action, midway, above] {$R$} (c0s21);
+\draw[edge] (c0s21) edge[bend left=20] node[action, midway, below] {$L$} (c0s20);
+\draw[edge] (c0s21) edge[bend left=20] node[action, midway, above] {$R$} (c0s22);
+\draw[edge] (c0s22) edge[bend left=20] node[action, midway, below] {$L$} (c0s21);
+\draw[edge] (c0s22) edge[bend left=20] node[action, midway, above] {$R$} (c0s23);
+\draw[edge] (c0s23) edge[bend left=20] node[action, midway, below] {$L$} (c0s22);
+\draw[edge] (c0s23) edge[bend left=20] node[action, midway, above] {$R$} (c0s24);
+\draw[edge] (c0s24) edge[bend left=20] node[action, midway, below] {$L$} (c0s23);
+
+% --- Vertical transitions
+\draw[edge] (c0s0) edge[bend left=20] node[action, midway, right] {$D$} (c0s5);
+\draw[edge] (c0s5) edge[bend left=20] node[action, midway, left] {$U$} (c0s0);
+\draw[edge] (c0s1) edge[bend left=20] node[action, midway, right] {$D$} (c0s6);
+\draw[edge] (c0s6) edge[bend left=20] node[action, midway, left] {$U$} (c0s1);
+\draw[edge] (c0s2) edge[bend left=20] node[action, midway, right] {$D$} (c0s7);
+\draw[edge] (c0s7) edge[bend left=20] node[action, midway, left] {$U$} (c0s2);
+\draw[edge] (c0s3) edge[bend left=20] node[action, midway, right] {$D$} (c0s8);
+\draw[edge] (c0s8) edge[bend left=20] node[action, midway, left] {$U$} (c0s3);
+\draw[edge] (c0s4) edge[bend left=20] node[action, midway, right] {$D$} (c0s9);
+\draw[edge] (c0s9) edge[bend left=20] node[action, midway, left] {$U$} (c0s4);
+\draw[edge] (c0s5) edge[bend left=20] node[action, midway, right] {$D$} (c0s10);
+\draw[edge] (c0s10) edge[bend left=20] node[action, midway, left] {$U$} (c0s5);
+\draw[edge] (c0s6) edge[bend left=20] node[action, midway, right] {$D$} (c0s11);
+\draw[edge] (c0s11) edge[bend left=20] node[action, midway, left] {$U$} (c0s6);
+\draw[edge] (c0s7) edge[bend left=20] node[action, midway, right] {$D$} (c0s12);
+\draw[edge] (c0s12) edge[bend left=20] node[action, midway, left] {$U$} (c0s7);
+\draw[edge] (c0s8) edge[bend left=20] node[action, midway, right] {$D$} (c0s13);
+\draw[edge] (c0s13) edge[bend left=20] node[action, midway, left] {$U$} (c0s8);
+\draw[edge] (c0s9) edge[bend left=20] node[action, midway, right] {$D$} (c0s14);
+\draw[edge] (c0s14) edge[bend left=20] node[action, midway, left] {$U$} (c0s9);
+\draw[edge] (c0s10) edge[bend left=20] node[action, midway, right] {$D$} (c0s15);
+\draw[edge] (c0s15) edge[bend left=20] node[action, midway, left] {$U$} (c0s10);
+\draw[edge] (c0s11) edge[bend left=20] node[action, midway, right] {$D$} (c0s16);
+\draw[edge] (c0s16) edge[bend left=20] node[action, midway, left] {$U$} (c0s11);
+\draw[edge] (c0s12) edge[bend left=20] node[action, midway, right] {$D$} (c0s17);
+\draw[edge] (c0s17) edge[bend left=20] node[action, midway, left] {$U$} (c0s12);
+\draw[edge] (c0s13) edge[bend left=20] node[action, midway, right] {$D$} (c0s18);
+\draw[edge] (c0s18) edge[bend left=20] node[action, midway, left] {$U$} (c0s13);
+\draw[edge] (c0s14) edge[bend left=20] node[action, midway, right] {$D$} (c0s19);
+\draw[edge] (c0s19) edge[bend left=20] node[action, midway, left] {$U$} (c0s14);
+\draw[edge] (c0s15) edge[bend left=20] node[action, midway, right] {$D$} (c0s20);
+\draw[edge] (c0s20) edge[bend left=20] node[action, midway, left] {$U$} (c0s15);
+\draw[edge] (c0s16) edge[bend left=20] node[action, midway, right] {$D$} (c0s21);
+\draw[edge] (c0s21) edge[bend left=20] node[action, midway, left] {$U$} (c0s16);
+\draw[edge] (c0s17) edge[bend left=20] node[action, midway, right] {$D$} (c0s22);
+\draw[edge] (c0s22) edge[bend left=20] node[action, midway, left] {$U$} (c0s17);
+\draw[edge] (c0s18) edge[bend left=20] node[action, midway, right] {$D$} (c0s23);
+\draw[edge] (c0s23) edge[bend left=20] node[action, midway, left] {$U$} (c0s18);
+\draw[edge] (c0s19) edge[bend left=20] node[action, midway, right] {$D$} (c0s24);
+\draw[edge] (c0s24) edge[bend left=20] node[action, midway, left] {$U$} (c0s19);
+
+\end{scope}
+
+% === Copy 1 === (top-right)
+\begin{scope}[xshift=7.0cm, yshift=0.0cm]
+% --- States (row 0)
+\node[state] (c1s0) {0};
+\node[state, right=of c1s0] (c1s1) {1};
+\node[state, right=of c1s1] (c1s2) {2};
+\node[state, right=of c1s2] (c1s3) {3};
+\node[state, right=of c1s3] (c1s4) {4};
+% --- States (row 1)
+\node[state, below=of c1s0] (c1s5) {5};
+\node[state, right=of c1s5] (c1s6) {6};
+\node[state, right=of c1s6] (c1s7) {7};
+\node[state, right=of c1s7] (c1s8) {8};
+\node[state, right=of c1s8] (c1s9) {9};
+% --- States (row 2)
+\node[state, below=of c1s5] (c1s10) {10};
+\node[state, right=of c1s10] (c1s11) {11};
+\node[state, right=of c1s11] (c1s12) {12};
+\node[state, right=of c1s12] (c1s13) {13};
+\node[state, fill=red!20, right=of c1s13] (c1s14) {14};
+% --- States (row 3)
+\node[state, below=of c1s10] (c1s15) {15};
+\node[state, right=of c1s15] (c1s16) {16};
+\node[state, right=of c1s16] (c1s17) {17};
+\node[state, right=of c1s17] (c1s18) {18};
+\node[state, right=of c1s18] (c1s19) {19};
+% --- States (row 4)
+\node[state, below=of c1s15] (c1s20) {20};
+\node[state, right=of c1s20] (c1s21) {21};
+\node[state, fill=red!20, right=of c1s21] (c1s22) {22};
+\node[state, right=of c1s22] (c1s23) {23};
+\node[state, fill=green!20, right=of c1s23] (c1s24) {24};
+
+% --- Self-loops (perimeter states)
+\draw[edge] (c1s0) edge[loop above] node[action, above] {$L, U$} (c1s0);
+\draw[edge] (c1s1) edge[loop above] node[action, above] {$U$} (c1s1);
+\draw[edge] (c1s2) edge[loop above] node[action, above] {$U$} (c1s2);
+\draw[edge] (c1s3) edge[loop above] node[action, above] {$U$} (c1s3);
+\draw[edge] (c1s4) edge[loop above] node[action, above] {$R, U$} (c1s4);
+\draw[edge] (c1s5) edge[loop left] node[action, left] {$L$} (c1s5);
+\draw[edge] (c1s9) edge[loop right] node[action, right] {$R$} (c1s9);
+\draw[edge] (c1s10) edge[loop left] node[action, left] {$L$} (c1s10);
+\draw[edge] (c1s14) edge[loop right] node[action, right] {$R$} (c1s14);
+\draw[edge] (c1s15) edge[loop left] node[action, left] {$L$} (c1s15);
+\draw[edge] (c1s19) edge[loop right] node[action, right] {$R$} (c1s19);
+\draw[edge] (c1s20) edge[loop below] node[action, below] {$L, D$} (c1s20);
+\draw[edge] (c1s21) edge[loop below] node[action, below] {$D$} (c1s21);
+\draw[edge] (c1s22) edge[loop below] node[action, below] {$D$} (c1s22);
+\draw[edge] (c1s23) edge[loop below] node[action, below] {$D$} (c1s23);
+\draw[edge] (c1s24) edge[loop below] node[action, below] {$R, D$} (c1s24);
+
+% --- Horizontal transitions
+\draw[edge] (c1s0) edge[bend left=20] node[action, midway, above] {$R$} (c1s1);
+\draw[edge] (c1s1) edge[bend left=20] node[action, midway, below] {$L$} (c1s0);
+\draw[edge] (c1s1) edge[bend left=20] node[action, midway, above] {$R$} (c1s2);
+\draw[edge] (c1s2) edge[bend left=20] node[action, midway, below] {$L$} (c1s1);
+\draw[edge] (c1s2) edge[bend left=20] node[action, midway, above] {$R$} (c1s3);
+\draw[edge] (c1s3) edge[bend left=20] node[action, midway, below] {$L$} (c1s2);
+\draw[edge] (c1s3) edge[bend left=20] node[action, midway, above] {$R$} (c1s4);
+\draw[edge] (c1s4) edge[bend left=20] node[action, midway, below] {$L$} (c1s3);
+\draw[edge] (c1s5) edge[bend left=20] node[action, midway, above] {$R$} (c1s6);
+\draw[edge] (c1s6) edge[bend left=20] node[action, midway, below] {$L$} (c1s5);
+\draw[edge] (c1s6) edge[bend left=20] node[action, midway, above] {$R$} (c1s7);
+\draw[edge] (c1s7) edge[bend left=20] node[action, midway, below] {$L$} (c1s6);
+\draw[edge] (c1s7) edge[bend left=20] node[action, midway, above] {$R$} (c1s8);
+\draw[edge] (c1s8) edge[bend left=20] node[action, midway, below] {$L$} (c1s7);
+\draw[edge] (c1s8) edge[bend left=20] node[action, midway, above] {$R$} (c1s9);
+\draw[edge] (c1s9) edge[bend left=20] node[action, midway, below] {$L$} (c1s8);
+\draw[edge] (c1s10) edge[bend left=20] node[action, midway, above] {$R$} (c1s11);
+\draw[edge] (c1s11) edge[bend left=20] node[action, midway, below] {$L$} (c1s10);
+\draw[edge] (c1s11) edge[bend left=20] node[action, midway, above] {$R$} (c1s12);
+\draw[edge] (c1s12) edge[bend left=20] node[action, midway, below] {$L$} (c1s11);
+\draw[edge] (c1s12) edge[bend left=20] node[action, midway, above] {$R$} (c1s13);
+\draw[edge] (c1s13) edge[bend left=20] node[action, midway, below] {$L$} (c1s12);
+\draw[edge] (c1s13) edge[bend left=20] node[action, midway, above] {$R$} (c1s14);
+\draw[edge] (c1s14) edge[bend left=20] node[action, midway, below] {$L$} (c1s13);
+\draw[edge] (c1s15) edge[bend left=20] node[action, midway, above] {$R$} (c1s16);
+\draw[edge] (c1s16) edge[bend left=20] node[action, midway, below] {$L$} (c1s15);
+\draw[edge] (c1s16) edge[bend left=20] node[action, midway, above] {$R$} (c1s17);
+\draw[edge] (c1s17) edge[bend left=20] node[action, midway, below] {$L$} (c1s16);
+\draw[edge] (c1s17) edge[bend left=20] node[action, midway, above] {$R$} (c1s18);
+\draw[edge] (c1s18) edge[bend left=20] node[action, midway, below] {$L$} (c1s17);
+\draw[edge] (c1s18) edge[bend left=20] node[action, midway, above] {$R$} (c1s19);
+\draw[edge] (c1s19) edge[bend left=20] node[action, midway, below] {$L$} (c1s18);
+\draw[edge] (c1s20) edge[bend left=20] node[action, midway, above] {$R$} (c1s21);
+\draw[edge] (c1s21) edge[bend left=20] node[action, midway, below] {$L$} (c1s20);
+\draw[edge] (c1s21) edge[bend left=20] node[action, midway, above] {$R$} (c1s22);
+\draw[edge] (c1s22) edge[bend left=20] node[action, midway, below] {$L$} (c1s21);
+\draw[edge] (c1s22) edge[bend left=20] node[action, midway, above] {$R$} (c1s23);
+\draw[edge] (c1s23) edge[bend left=20] node[action, midway, below] {$L$} (c1s22);
+\draw[edge] (c1s23) edge[bend left=20] node[action, midway, above] {$R$} (c1s24);
+\draw[edge] (c1s24) edge[bend left=20] node[action, midway, below] {$L$} (c1s23);
+
+% --- Vertical transitions
+\draw[edge] (c1s0) edge[bend left=20] node[action, midway, right] {$D$} (c1s5);
+\draw[edge] (c1s5) edge[bend left=20] node[action, midway, left] {$U$} (c1s0);
+\draw[edge] (c1s1) edge[bend left=20] node[action, midway, right] {$D$} (c1s6);
+\draw[edge] (c1s6) edge[bend left=20] node[action, midway, left] {$U$} (c1s1);
+\draw[edge] (c1s2) edge[bend left=20] node[action, midway, right] {$D$} (c1s7);
+\draw[edge] (c1s7) edge[bend left=20] node[action, midway, left] {$U$} (c1s2);
+\draw[edge] (c1s3) edge[bend left=20] node[action, midway, right] {$D$} (c1s8);
+\draw[edge] (c1s8) edge[bend left=20] node[action, midway, left] {$U$} (c1s3);
+\draw[edge] (c1s4) edge[bend left=20] node[action, midway, right] {$D$} (c1s9);
+\draw[edge] (c1s9) edge[bend left=20] node[action, midway, left] {$U$} (c1s4);
+\draw[edge] (c1s5) edge[bend left=20] node[action, midway, right] {$D$} (c1s10);
+\draw[edge] (c1s10) edge[bend left=20] node[action, midway, left] {$U$} (c1s5);
+\draw[edge] (c1s6) edge[bend left=20] node[action, midway, right] {$D$} (c1s11);
+\draw[edge] (c1s11) edge[bend left=20] node[action, midway, left] {$U$} (c1s6);
+\draw[edge] (c1s7) edge[bend left=20] node[action, midway, right] {$D$} (c1s12);
+\draw[edge] (c1s12) edge[bend left=20] node[action, midway, left] {$U$} (c1s7);
+\draw[edge] (c1s8) edge[bend left=20] node[action, midway, right] {$D$} (c1s13);
+\draw[edge] (c1s13) edge[bend left=20] node[action, midway, left] {$U$} (c1s8);
+\draw[edge] (c1s9) edge[bend left=20] node[action, midway, right] {$D$} (c1s14);
+\draw[edge] (c1s14) edge[bend left=20] node[action, midway, left] {$U$} (c1s9);
+\draw[edge] (c1s10) edge[bend left=20] node[action, midway, right] {$D$} (c1s15);
+\draw[edge] (c1s15) edge[bend left=20] node[action, midway, left] {$U$} (c1s10);
+\draw[edge] (c1s11) edge[bend left=20] node[action, midway, right] {$D$} (c1s16);
+\draw[edge] (c1s16) edge[bend left=20] node[action, midway, left] {$U$} (c1s11);
+\draw[edge] (c1s12) edge[bend left=20] node[action, midway, right] {$D$} (c1s17);
+\draw[edge] (c1s17) edge[bend left=20] node[action, midway, left] {$U$} (c1s12);
+\draw[edge] (c1s13) edge[bend left=20] node[action, midway, right] {$D$} (c1s18);
+\draw[edge] (c1s18) edge[bend left=20] node[action, midway, left] {$U$} (c1s13);
+\draw[edge] (c1s14) edge[bend left=20] node[action, midway, right] {$D$} (c1s19);
+\draw[edge] (c1s19) edge[bend left=20] node[action, midway, left] {$U$} (c1s14);
+\draw[edge] (c1s15) edge[bend left=20] node[action, midway, right] {$D$} (c1s20);
+\draw[edge] (c1s20) edge[bend left=20] node[action, midway, left] {$U$} (c1s15);
+\draw[edge] (c1s16) edge[bend left=20] node[action, midway, right] {$D$} (c1s21);
+\draw[edge] (c1s21) edge[bend left=20] node[action, midway, left] {$U$} (c1s16);
+\draw[edge] (c1s17) edge[bend left=20] node[action, midway, right] {$D$} (c1s22);
+\draw[edge] (c1s22) edge[bend left=20] node[action, midway, left] {$U$} (c1s17);
+\draw[edge] (c1s18) edge[bend left=20] node[action, midway, right] {$D$} (c1s23);
+\draw[edge] (c1s23) edge[bend left=20] node[action, midway, left] {$U$} (c1s18);
+\draw[edge] (c1s19) edge[bend left=20] node[action, midway, right] {$D$} (c1s24);
+\draw[edge] (c1s24) edge[bend left=20] node[action, midway, left] {$U$} (c1s19);
+
+\end{scope}
+
+% === Copy 2 === (bottom-left)
+\begin{scope}[xshift=0.0cm, yshift=-7.0cm]
+% --- States (row 0)
+\node[state] (c2s0) {0};
+\node[state, right=of c2s0] (c2s1) {1};
+\node[state, right=of c2s1] (c2s2) {2};
+\node[state, right=of c2s2] (c2s3) {3};
+\node[state, right=of c2s3] (c2s4) {4};
+% --- States (row 1)
+\node[state, below=of c2s0] (c2s5) {5};
+\node[state, right=of c2s5] (c2s6) {6};
+\node[state, right=of c2s6] (c2s7) {7};
+\node[state, right=of c2s7] (c2s8) {8};
+\node[state, right=of c2s8] (c2s9) {9};
+% --- States (row 2)
+\node[state, below=of c2s5] (c2s10) {10};
+\node[state, right=of c2s10] (c2s11) {11};
+\node[state, right=of c2s11] (c2s12) {12};
+\node[state, right=of c2s12] (c2s13) {13};
+\node[state, fill=red!20, right=of c2s13] (c2s14) {14};
+% --- States (row 3)
+\node[state, below=of c2s10] (c2s15) {15};
+\node[state, right=of c2s15] (c2s16) {16};
+\node[state, right=of c2s16] (c2s17) {17};
+\node[state, right=of c2s17] (c2s18) {18};
+\node[state, right=of c2s18] (c2s19) {19};
+% --- States (row 4)
+\node[state, below=of c2s15] (c2s20) {20};
+\node[state, fill=red!20, right=of c2s20] (c2s21) {21};
+\node[state, right=of c2s21] (c2s22) {22};
+\node[state, fill=red!20, right=of c2s22] (c2s23) {23};
+\node[state, fill=green!20, right=of c2s23] (c2s24) {24};
+
+% --- Self-loops (perimeter states)
+\draw[edge] (c2s0) edge[loop above] node[action, above] {$L, U$} (c2s0);
+\draw[edge] (c2s1) edge[loop above] node[action, above] {$U$} (c2s1);
+\draw[edge] (c2s2) edge[loop above] node[action, above] {$U$} (c2s2);
+\draw[edge] (c2s3) edge[loop above] node[action, above] {$U$} (c2s3);
+\draw[edge] (c2s4) edge[loop above] node[action, above] {$R, U$} (c2s4);
+\draw[edge] (c2s5) edge[loop left] node[action, left] {$L$} (c2s5);
+\draw[edge] (c2s9) edge[loop right] node[action, right] {$R$} (c2s9);
+\draw[edge] (c2s10) edge[loop left] node[action, left] {$L$} (c2s10);
+\draw[edge] (c2s14) edge[loop right] node[action, right] {$R$} (c2s14);
+\draw[edge] (c2s15) edge[loop left] node[action, left] {$L$} (c2s15);
+\draw[edge] (c2s19) edge[loop right] node[action, right] {$R$} (c2s19);
+\draw[edge] (c2s20) edge[loop below] node[action, below] {$L, D$} (c2s20);
+\draw[edge] (c2s21) edge[loop below] node[action, below] {$D$} (c2s21);
+\draw[edge] (c2s22) edge[loop below] node[action, below] {$D$} (c2s22);
+\draw[edge] (c2s23) edge[loop below] node[action, below] {$D$} (c2s23);
+\draw[edge] (c2s24) edge[loop below] node[action, below] {$R, D$} (c2s24);
+
+% --- Horizontal transitions
+\draw[edge] (c2s0) edge[bend left=20] node[action, midway, above] {$R$} (c2s1);
+\draw[edge] (c2s1) edge[bend left=20] node[action, midway, below] {$L$} (c2s0);
+\draw[edge] (c2s1) edge[bend left=20] node[action, midway, above] {$R$} (c2s2);
+\draw[edge] (c2s2) edge[bend left=20] node[action, midway, below] {$L$} (c2s1);
+\draw[edge] (c2s2) edge[bend left=20] node[action, midway, above] {$R$} (c2s3);
+\draw[edge] (c2s3) edge[bend left=20] node[action, midway, below] {$L$} (c2s2);
+\draw[edge] (c2s3) edge[bend left=20] node[action, midway, above] {$R$} (c2s4);
+\draw[edge] (c2s4) edge[bend left=20] node[action, midway, below] {$L$} (c2s3);
+\draw[edge] (c2s5) edge[bend left=20] node[action, midway, above] {$R$} (c2s6);
+\draw[edge] (c2s6) edge[bend left=20] node[action, midway, below] {$L$} (c2s5);
+\draw[edge] (c2s6) edge[bend left=20] node[action, midway, above] {$R$} (c2s7);
+\draw[edge] (c2s7) edge[bend left=20] node[action, midway, below] {$L$} (c2s6);
+\draw[edge] (c2s7) edge[bend left=20] node[action, midway, above] {$R$} (c2s8);
+\draw[edge] (c2s8) edge[bend left=20] node[action, midway, below] {$L$} (c2s7);
+\draw[edge] (c2s8) edge[bend left=20] node[action, midway, above] {$R$} (c2s9);
+\draw[edge] (c2s9) edge[bend left=20] node[action, midway, below] {$L$} (c2s8);
+\draw[edge] (c2s10) edge[bend left=20] node[action, midway, above] {$R$} (c2s11);
+\draw[edge] (c2s11) edge[bend left=20] node[action, midway, below] {$L$} (c2s10);
+\draw[edge] (c2s11) edge[bend left=20] node[action, midway, above] {$R$} (c2s12);
+\draw[edge] (c2s12) edge[bend left=20] node[action, midway, below] {$L$} (c2s11);
+\draw[edge] (c2s12) edge[bend left=20] node[action, midway, above] {$R$} (c2s13);
+\draw[edge] (c2s13) edge[bend left=20] node[action, midway, below] {$L$} (c2s12);
+\draw[edge] (c2s13) edge[bend left=20] node[action, midway, above] {$R$} (c2s14);
+\draw[edge] (c2s14) edge[bend left=20] node[action, midway, below] {$L$} (c2s13);
+\draw[edge] (c2s15) edge[bend left=20] node[action, midway, above] {$R$} (c2s16);
+\draw[edge] (c2s16) edge[bend left=20] node[action, midway, below] {$L$} (c2s15);
+\draw[edge] (c2s16) edge[bend left=20] node[action, midway, above] {$R$} (c2s17);
+\draw[edge] (c2s17) edge[bend left=20] node[action, midway, below] {$L$} (c2s16);
+\draw[edge] (c2s17) edge[bend left=20] node[action, midway, above] {$R$} (c2s18);
+\draw[edge] (c2s18) edge[bend left=20] node[action, midway, below] {$L$} (c2s17);
+\draw[edge] (c2s18) edge[bend left=20] node[action, midway, above] {$R$} (c2s19);
+\draw[edge] (c2s19) edge[bend left=20] node[action, midway, below] {$L$} (c2s18);
+\draw[edge] (c2s20) edge[bend left=20] node[action, midway, above] {$R$} (c2s21);
+\draw[edge] (c2s21) edge[bend left=20] node[action, midway, below] {$L$} (c2s20);
+\draw[edge] (c2s21) edge[bend left=20] node[action, midway, above] {$R$} (c2s22);
+\draw[edge] (c2s22) edge[bend left=20] node[action, midway, below] {$L$} (c2s21);
+\draw[edge] (c2s22) edge[bend left=20] node[action, midway, above] {$R$} (c2s23);
+\draw[edge] (c2s23) edge[bend left=20] node[action, midway, below] {$L$} (c2s22);
+\draw[edge] (c2s23) edge[bend left=20] node[action, midway, above] {$R$} (c2s24);
+\draw[edge] (c2s24) edge[bend left=20] node[action, midway, below] {$L$} (c2s23);
+
+% --- Vertical transitions
+\draw[edge] (c2s0) edge[bend left=20] node[action, midway, right] {$D$} (c2s5);
+\draw[edge] (c2s5) edge[bend left=20] node[action, midway, left] {$U$} (c2s0);
+\draw[edge] (c2s1) edge[bend left=20] node[action, midway, right] {$D$} (c2s6);
+\draw[edge] (c2s6) edge[bend left=20] node[action, midway, left] {$U$} (c2s1);
+\draw[edge] (c2s2) edge[bend left=20] node[action, midway, right] {$D$} (c2s7);
+\draw[edge] (c2s7) edge[bend left=20] node[action, midway, left] {$U$} (c2s2);
+\draw[edge] (c2s3) edge[bend left=20] node[action, midway, right] {$D$} (c2s8);
+\draw[edge] (c2s8) edge[bend left=20] node[action, midway, left] {$U$} (c2s3);
+\draw[edge] (c2s4) edge[bend left=20] node[action, midway, right] {$D$} (c2s9);
+\draw[edge] (c2s9) edge[bend left=20] node[action, midway, left] {$U$} (c2s4);
+\draw[edge] (c2s5) edge[bend left=20] node[action, midway, right] {$D$} (c2s10);
+\draw[edge] (c2s10) edge[bend left=20] node[action, midway, left] {$U$} (c2s5);
+\draw[edge] (c2s6) edge[bend left=20] node[action, midway, right] {$D$} (c2s11);
+\draw[edge] (c2s11) edge[bend left=20] node[action, midway, left] {$U$} (c2s6);
+\draw[edge] (c2s7) edge[bend left=20] node[action, midway, right] {$D$} (c2s12);
+\draw[edge] (c2s12) edge[bend left=20] node[action, midway, left] {$U$} (c2s7);
+\draw[edge] (c2s8) edge[bend left=20] node[action, midway, right] {$D$} (c2s13);
+\draw[edge] (c2s13) edge[bend left=20] node[action, midway, left] {$U$} (c2s8);
+\draw[edge] (c2s9) edge[bend left=20] node[action, midway, right] {$D$} (c2s14);
+\draw[edge] (c2s14) edge[bend left=20] node[action, midway, left] {$U$} (c2s9);
+\draw[edge] (c2s10) edge[bend left=20] node[action, midway, right] {$D$} (c2s15);
+\draw[edge] (c2s15) edge[bend left=20] node[action, midway, left] {$U$} (c2s10);
+\draw[edge] (c2s11) edge[bend left=20] node[action, midway, right] {$D$} (c2s16);
+\draw[edge] (c2s16) edge[bend left=20] node[action, midway, left] {$U$} (c2s11);
+\draw[edge] (c2s12) edge[bend left=20] node[action, midway, right] {$D$} (c2s17);
+\draw[edge] (c2s17) edge[bend left=20] node[action, midway, left] {$U$} (c2s12);
+\draw[edge] (c2s13) edge[bend left=20] node[action, midway, right] {$D$} (c2s18);
+\draw[edge] (c2s18) edge[bend left=20] node[action, midway, left] {$U$} (c2s13);
+\draw[edge] (c2s14) edge[bend left=20] node[action, midway, right] {$D$} (c2s19);
+\draw[edge] (c2s19) edge[bend left=20] node[action, midway, left] {$U$} (c2s14);
+\draw[edge] (c2s15) edge[bend left=20] node[action, midway, right] {$D$} (c2s20);
+\draw[edge] (c2s20) edge[bend left=20] node[action, midway, left] {$U$} (c2s15);
+\draw[edge] (c2s16) edge[bend left=20] node[action, midway, right] {$D$} (c2s21);
+\draw[edge] (c2s21) edge[bend left=20] node[action, midway, left] {$U$} (c2s16);
+\draw[edge] (c2s17) edge[bend left=20] node[action, midway, right] {$D$} (c2s22);
+\draw[edge] (c2s22) edge[bend left=20] node[action, midway, left] {$U$} (c2s17);
+\draw[edge] (c2s18) edge[bend left=20] node[action, midway, right] {$D$} (c2s23);
+\draw[edge] (c2s23) edge[bend left=20] node[action, midway, left] {$U$} (c2s18);
+\draw[edge] (c2s19) edge[bend left=20] node[action, midway, right] {$D$} (c2s24);
+\draw[edge] (c2s24) edge[bend left=20] node[action, midway, left] {$U$} (c2s19);
+
+\end{scope}
+
+% === Copy 3 === (bottom-right)
+\begin{scope}[xshift=7.0cm, yshift=-7.0cm]
+% --- States (row 0)
+\node[state] (c3s0) {0};
+\node[state, right=of c3s0] (c3s1) {1};
+\node[state, right=of c3s1] (c3s2) {2};
+\node[state, right=of c3s2] (c3s3) {3};
+\node[state, right=of c3s3] (c3s4) {4};
+% --- States (row 1)
+\node[state, below=of c3s0] (c3s5) {5};
+\node[state, right=of c3s5] (c3s6) {6};
+\node[state, right=of c3s6] (c3s7) {7};
+\node[state, right=of c3s7] (c3s8) {8};
+\node[state, right=of c3s8] (c3s9) {9};
+% --- States (row 2)
+\node[state, below=of c3s5] (c3s10) {10};
+\node[state, right=of c3s10] (c3s11) {11};
+\node[state, right=of c3s11] (c3s12) {12};
+\node[state, right=of c3s12] (c3s13) {13};
+\node[state, right=of c3s13] (c3s14) {14};
+% --- States (row 3)
+\node[state, below=of c3s10] (c3s15) {15};
+\node[state, right=of c3s15] (c3s16) {16};
+\node[state, right=of c3s16] (c3s17) {17};
+\node[state, right=of c3s17] (c3s18) {18};
+\node[state, right=of c3s18] (c3s19) {19};
+% --- States (row 4)
+\node[state, fill=red!20, below=of c3s15] (c3s20) {20};
+\node[state, fill=red!20, right=of c3s20] (c3s21) {21};
+\node[state, fill=red!20, right=of c3s21] (c3s22) {22};
+\node[state, fill=red!20, right=of c3s22] (c3s23) {23};
+\node[state, fill=green!20, right=of c3s23] (c3s24) {24};
+
+% --- Self-loops (perimeter states)
+\draw[edge] (c3s0) edge[loop above] node[action, above] {$L, U$} (c3s0);
+\draw[edge] (c3s1) edge[loop above] node[action, above] {$U$} (c3s1);
+\draw[edge] (c3s2) edge[loop above] node[action, above] {$U$} (c3s2);
+\draw[edge] (c3s3) edge[loop above] node[action, above] {$U$} (c3s3);
+\draw[edge] (c3s4) edge[loop above] node[action, above] {$R, U$} (c3s4);
+\draw[edge] (c3s5) edge[loop left] node[action, left] {$L$} (c3s5);
+\draw[edge] (c3s9) edge[loop right] node[action, right] {$R$} (c3s9);
+\draw[edge] (c3s10) edge[loop left] node[action, left] {$L$} (c3s10);
+\draw[edge] (c3s14) edge[loop right] node[action, right] {$R$} (c3s14);
+\draw[edge] (c3s15) edge[loop left] node[action, left] {$L$} (c3s15);
+\draw[edge] (c3s19) edge[loop right] node[action, right] {$R$} (c3s19);
+\draw[edge] (c3s20) edge[loop below] node[action, below] {$L, D$} (c3s20);
+\draw[edge] (c3s21) edge[loop below] node[action, below] {$D$} (c3s21);
+\draw[edge] (c3s22) edge[loop below] node[action, below] {$D$} (c3s22);
+\draw[edge] (c3s23) edge[loop below] node[action, below] {$D$} (c3s23);
+\draw[edge] (c3s24) edge[loop below] node[action, below] {$R, D$} (c3s24);
+
+% --- Horizontal transitions
+\draw[edge] (c3s0) edge[bend left=20] node[action, midway, above] {$R$} (c3s1);
+\draw[edge] (c3s1) edge[bend left=20] node[action, midway, below] {$L$} (c3s0);
+\draw[edge] (c3s1) edge[bend left=20] node[action, midway, above] {$R$} (c3s2);
+\draw[edge] (c3s2) edge[bend left=20] node[action, midway, below] {$L$} (c3s1);
+\draw[edge] (c3s2) edge[bend left=20] node[action, midway, above] {$R$} (c3s3);
+\draw[edge] (c3s3) edge[bend left=20] node[action, midway, below] {$L$} (c3s2);
+\draw[edge] (c3s3) edge[bend left=20] node[action, midway, above] {$R$} (c3s4);
+\draw[edge] (c3s4) edge[bend left=20] node[action, midway, below] {$L$} (c3s3);
+\draw[edge] (c3s5) edge[bend left=20] node[action, midway, above] {$R$} (c3s6);
+\draw[edge] (c3s6) edge[bend left=20] node[action, midway, below] {$L$} (c3s5);
+\draw[edge] (c3s6) edge[bend left=20] node[action, midway, above] {$R$} (c3s7);
+\draw[edge] (c3s7) edge[bend left=20] node[action, midway, below] {$L$} (c3s6);
+\draw[edge] (c3s7) edge[bend left=20] node[action, midway, above] {$R$} (c3s8);
+\draw[edge] (c3s8) edge[bend left=20] node[action, midway, below] {$L$} (c3s7);
+\draw[edge] (c3s8) edge[bend left=20] node[action, midway, above] {$R$} (c3s9);
+\draw[edge] (c3s9) edge[bend left=20] node[action, midway, below] {$L$} (c3s8);
+\draw[edge] (c3s10) edge[bend left=20] node[action, midway, above] {$R$} (c3s11);
+\draw[edge] (c3s11) edge[bend left=20] node[action, midway, below] {$L$} (c3s10);
+\draw[edge] (c3s11) edge[bend left=20] node[action, midway, above] {$R$} (c3s12);
+\draw[edge] (c3s12) edge[bend left=20] node[action, midway, below] {$L$} (c3s11);
+\draw[edge] (c3s12) edge[bend left=20] node[action, midway, above] {$R$} (c3s13);
+\draw[edge] (c3s13) edge[bend left=20] node[action, midway, below] {$L$} (c3s12);
+\draw[edge] (c3s13) edge[bend left=20] node[action, midway, above] {$R$} (c3s14);
+\draw[edge] (c3s14) edge[bend left=20] node[action, midway, below] {$L$} (c3s13);
+\draw[edge] (c3s15) edge[bend left=20] node[action, midway, above] {$R$} (c3s16);
+\draw[edge] (c3s16) edge[bend left=20] node[action, midway, below] {$L$} (c3s15);
+\draw[edge] (c3s16) edge[bend left=20] node[action, midway, above] {$R$} (c3s17);
+\draw[edge] (c3s17) edge[bend left=20] node[action, midway, below] {$L$} (c3s16);
+\draw[edge] (c3s17) edge[bend left=20] node[action, midway, above] {$R$} (c3s18);
+\draw[edge] (c3s18) edge[bend left=20] node[action, midway, below] {$L$} (c3s17);
+\draw[edge] (c3s18) edge[bend left=20] node[action, midway, above] {$R$} (c3s19);
+\draw[edge] (c3s19) edge[bend left=20] node[action, midway, below] {$L$} (c3s18);
+\draw[edge] (c3s20) edge[bend left=20] node[action, midway, above] {$R$} (c3s21);
+\draw[edge] (c3s21) edge[bend left=20] node[action, midway, below] {$L$} (c3s20);
+\draw[edge] (c3s21) edge[bend left=20] node[action, midway, above] {$R$} (c3s22);
+\draw[edge] (c3s22) edge[bend left=20] node[action, midway, below] {$L$} (c3s21);
+\draw[edge] (c3s22) edge[bend left=20] node[action, midway, above] {$R$} (c3s23);
+\draw[edge] (c3s23) edge[bend left=20] node[action, midway, below] {$L$} (c3s22);
+\draw[edge] (c3s23) edge[bend left=20] node[action, midway, above] {$R$} (c3s24);
+\draw[edge] (c3s24) edge[bend left=20] node[action, midway, below] {$L$} (c3s23);
+
+% --- Vertical transitions
+\draw[edge] (c3s0) edge[bend left=20] node[action, midway, right] {$D$} (c3s5);
+\draw[edge] (c3s5) edge[bend left=20] node[action, midway, left] {$U$} (c3s0);
+\draw[edge] (c3s1) edge[bend left=20] node[action, midway, right] {$D$} (c3s6);
+\draw[edge] (c3s6) edge[bend left=20] node[action, midway, left] {$U$} (c3s1);
+\draw[edge] (c3s2) edge[bend left=20] node[action, midway, right] {$D$} (c3s7);
+\draw[edge] (c3s7) edge[bend left=20] node[action, midway, left] {$U$} (c3s2);
+\draw[edge] (c3s3) edge[bend left=20] node[action, midway, right] {$D$} (c3s8);
+\draw[edge] (c3s8) edge[bend left=20] node[action, midway, left] {$U$} (c3s3);
+\draw[edge] (c3s4) edge[bend left=20] node[action, midway, right] {$D$} (c3s9);
+\draw[edge] (c3s9) edge[bend left=20] node[action, midway, left] {$U$} (c3s4);
+\draw[edge] (c3s5) edge[bend left=20] node[action, midway, right] {$D$} (c3s10);
+\draw[edge] (c3s10) edge[bend left=20] node[action, midway, left] {$U$} (c3s5);
+\draw[edge] (c3s6) edge[bend left=20] node[action, midway, right] {$D$} (c3s11);
+\draw[edge] (c3s11) edge[bend left=20] node[action, midway, left] {$U$} (c3s6);
+\draw[edge] (c3s7) edge[bend left=20] node[action, midway, right] {$D$} (c3s12);
+\draw[edge] (c3s12) edge[bend left=20] node[action, midway, left] {$U$} (c3s7);
+\draw[edge] (c3s8) edge[bend left=20] node[action, midway, right] {$D$} (c3s13);
+\draw[edge] (c3s13) edge[bend left=20] node[action, midway, left] {$U$} (c3s8);
+\draw[edge] (c3s9) edge[bend left=20] node[action, midway, right] {$D$} (c3s14);
+\draw[edge] (c3s14) edge[bend left=20] node[action, midway, left] {$U$} (c3s9);
+\draw[edge] (c3s10) edge[bend left=20] node[action, midway, right] {$D$} (c3s15);
+\draw[edge] (c3s15) edge[bend left=20] node[action, midway, left] {$U$} (c3s10);
+\draw[edge] (c3s11) edge[bend left=20] node[action, midway, right] {$D$} (c3s16);
+\draw[edge] (c3s16) edge[bend left=20] node[action, midway, left] {$U$} (c3s11);
+\draw[edge] (c3s12) edge[bend left=20] node[action, midway, right] {$D$} (c3s17);
+\draw[edge] (c3s17) edge[bend left=20] node[action, midway, left] {$U$} (c3s12);
+\draw[edge] (c3s13) edge[bend left=20] node[action, midway, right] {$D$} (c3s18);
+\draw[edge] (c3s18) edge[bend left=20] node[action, midway, left] {$U$} (c3s13);
+\draw[edge] (c3s14) edge[bend left=20] node[action, midway, right] {$D$} (c3s19);
+\draw[edge] (c3s19) edge[bend left=20] node[action, midway, left] {$U$} (c3s14);
+\draw[edge] (c3s15) edge[bend left=20] node[action, midway, right] {$D$} (c3s20);
+\draw[edge] (c3s20) edge[bend left=20] node[action, midway, left] {$U$} (c3s15);
+\draw[edge] (c3s16) edge[bend left=20] node[action, midway, right] {$D$} (c3s21);
+\draw[edge] (c3s21) edge[bend left=20] node[action, midway, left] {$U$} (c3s16);
+\draw[edge] (c3s17) edge[bend left=20] node[action, midway, right] {$D$} (c3s22);
+\draw[edge] (c3s22) edge[bend left=20] node[action, midway, left] {$U$} (c3s17);
+\draw[edge] (c3s18) edge[bend left=20] node[action, midway, right] {$D$} (c3s23);
+\draw[edge] (c3s23) edge[bend left=20] node[action, midway, left] {$U$} (c3s18);
+\draw[edge] (c3s19) edge[bend left=20] node[action, midway, right] {$D$} (c3s24);
+\draw[edge] (c3s24) edge[bend left=20] node[action, midway, left] {$U$} (c3s19);
+
+\end{scope}
+
+\end{tikzpicture}
