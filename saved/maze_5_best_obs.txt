@@ -1,0 +1,293 @@
+\begin{tikzpicture}[
+  scale=0.65,
+  transform shape,
+  >=Latex,
+  state/.style={draw,circle,minimum size=5mm,inner sep=0pt,font=\scriptsize},
+  edge/.style={-Latex,thin},
+  action/.style={font=\tiny},
+  node distance=7mm
+]
+
+% === Copy 0 ===
+\begin{scope}[yshift=0.0cm, xshift=0.0cm]
+% --- States (horizontal line)
+\node[state] (c0s0) {0};
+\node[state, right=of c0s0] (c0s1) {1};
+\node[state, right=of c0s1] (c0s2) {2};
+\node[state, right=of c0s2] (c0s3) {3};
+\node[state, right=of c0s3] (c0s4) {4};
+% --- States (left arm, below s0)
+\node[state, below=of c0s0] (c0s5) {5};
+\node[state, below=of c0s5] (c0s6) {6};
+% --- States (middle arm, below s2)
+\node[state, below=of c0s2] (c0s7) {7};
+\node[state, fill=green!20, below=of c0s7] (c0s8) {8};
+% --- States (right arm, below s4)
+\node[state, below=of c0s4] (c0s9) {9};
+\node[state, below=of c0s9] (c0s10) {10};
+
+% --- Horizontal transitions
+\draw[edge] (c0s0) edge[bend left=20] node[action, midway, above] {$R$} (c0s1);
+\draw[edge] (c0s1) edge[bend left=20] node[action, midway, below] {$L$} (c0s0);
+\draw[edge] (c0s1) edge[bend left=20] node[action, midway, above] {$R$} (c0s2);
+\draw[edge] (c0s2) edge[bend left=20] node[action, midway, below] {$L$} (c0s1);
+\draw[edge] (c0s2) edge[bend left=20] node[action, midway, above] {$R$} (c0s3);
+\draw[edge] (c0s3) edge[bend left=20] node[action, midway, below] {$L$} (c0s2);
+\draw[edge] (c0s3) edge[bend left=20] node[action, midway, above] {$R$} (c0s4);
+\draw[edge] (c0s4) edge[bend left=20] node[action, midway, below] {$L$} (c0s3);
+
+% --- Left arm transitions
+\draw[edge] (c0s0) edge[bend left=20] node[action, midway, right] {$D$} (c0s5);
+\draw[edge] (c0s5) edge[bend left=20] node[action, midway, left] {$U$} (c0s0);
+\draw[edge] (c0s5) edge[bend left=20] node[action, midway, right] {$D$} (c0s6);
+\draw[edge] (c0s6) edge[bend left=20] node[action, midway, left] {$U$} (c0s5);
+
+% --- Middle arm transitions
+\draw[edge] (c0s2) edge[bend left=20] node[action, midway, right] {$D$} (c0s7);
+\draw[edge] (c0s7) edge[bend left=20] node[action, midway, left] {$U$} (c0s2);
+\draw[edge] (c0s7) edge[bend left=20] node[action, midway, right] {$D$} (c0s8);
+
+% --- Right arm transitions
+\draw[edge] (c0s4) edge[bend left=20] node[action, midway, right] {$D$} (c0s9);
+\draw[edge] (c0s9) edge[bend left=20] node[action, midway, left] {$U$} (c0s4);
+\draw[edge] (c0s9) edge[bend left=20] node[action, midway, right] {$D$} (c0s10);
+\draw[edge] (c0s10) edge[bend left=20] node[action, midway, left] {$U$} (c0s9);
+
+\end{scope}
+
+% === Copy 1 ===
+\begin{scope}[yshift=0.0cm, xshift=6.0cm]
+% --- States (horizontal line)
+\node[state] (c1s0) {0};
+\node[state, right=of c1s0] (c1s1) {1};
+\node[state, right=of c1s1] (c1s2) {2};
+\node[state, right=of c1s2] (c1s3) {3};
+\node[state, right=of c1s3] (c1s4) {4};
+% --- States (left arm, below s0)
+\node[state, below=of c1s0] (c1s5) {5};
+\node[state, below=of c1s5] (c1s6) {6};
+% --- States (middle arm, below s2)
+\node[state, below=of c1s2] (c1s7) {7};
+\node[state, fill=green!20, below=of c1s7] (c1s8) {8};
+% --- States (right arm, below s4)
+\node[state, below=of c1s4] (c1s9) {9};
+\node[state, below=of c1s9] (c1s10) {10};
+
+% --- Horizontal transitions
+\draw[edge] (c1s0) edge[bend left=20] node[action, midway, above] {$R$} (c1s1);
+\draw[edge] (c1s1) edge[bend left=20] node[action, midway, below] {$L$} (c1s0);
+\draw[edge] (c1s1) edge[bend left=20] node[action, midway, above] {$R$} (c1s2);
+\draw[edge] (c1s2) edge[bend left=20] node[action, midway, below] {$L$} (c1s1);
+\draw[edge] (c1s2) edge[bend left=20] node[action, midway, above] {$R$} (c1s3);
+\draw[edge] (c1s3) edge[bend left=20] node[action, midway, below] {$L$} (c1s2);
+\draw[edge] (c1s3) edge[bend left=20] node[action, midway, above] {$R$} (c1s4);
+\draw[edge] (c1s4) edge[bend left=20] node[action, midway, below] {$L$} (c1s3);
+
+% --- Left arm transitions
+\draw[edge] (c1s0) edge[bend left=20] node[action, midway, right] {$D$} (c1s5);
+\draw[edge] (c1s5) edge[bend left=20] node[action, midway, left] {$U$} (c1s0);
+\draw[edge] (c1s5) edge[bend left=20] node[action, midway, right] {$D$} (c1s6);
+\draw[edge] (c1s6) edge[bend left=20] node[action, midway, left] {$U$} (c1s5);
+
+% --- Middle arm transitions
+\draw[edge] (c1s2) edge[bend left=20] node[action, midway, right] {$D$} (c1s7);
+\draw[edge] (c1s7) edge[bend left=20] node[action, midway, left] {$U$} (c1s2);
+\draw[edge] (c1s7) edge[bend left=20] node[action, midway, right] {$D$} (c1s8);
+
+% --- Right arm transitions
+\draw[edge] (c1s4) edge[bend left=20] node[action, midway, right] {$D$} (c1s9);
+\draw[edge] (c1s9) edge[bend left=20] node[action, midway, left] {$U$} (c1s4);
+\draw[edge] (c1s9) edge[bend left=20] node[action, midway, right] {$D$} (c1s10);
+\draw[edge] (c1s10) edge[bend left=20] node[action, midway, left] {$U$} (c1s9);
+
+\end{scope}
+
+% === Copy 2 ===
+\begin{scope}[yshift=-3.5cm, xshift=0.0cm]
+% --- States (horizontal line)
+\node[state] (c2s0) {0};
+\node[state, right=of c2s0] (c2s1) {1};
+\node[state, right=of c2s1] (c2s2) {2};
+\node[state, right=of c2s2] (c2s3) {3};
+\node[state, right=of c2s3] (c2s4) {4};
+% --- States (left arm, below s0)
+\node[state, below=of c2s0] (c2s5) {5};
+\node[state, below=of c2s5] (c2s6) {6};
+% --- States (middle arm, below s2)
+\node[state, below=of c2s2] (c2s7) {7};
+\node[state, fill=green!20, below=of c2s7] (c2s8) {8};
+% --- States (right arm, below s4)
+\node[state, below=of c2s4] (c2s9) {9};
+\node[state, below=of c2s9] (c2s10) {10};
+
+% --- Horizontal transitions
+\draw[edge] (c2s0) edge[bend left=20] node[action, midway, above] {$R$} (c2s1);
+\draw[edge] (c2s1) edge[bend left=20] node[action, midway, below] {$L$} (c2s0);
+\draw[edge] (c2s1) edge[bend left=20] node[action, midway, above] {$R$} (c2s2);
+\draw[edge] (c2s2) edge[bend left=20] node[action, midway, below] {$L$} (c2s1);
+\draw[edge] (c2s2) edge[bend left=20] node[action, midway, above] {$R$} (c2s3);
+\draw[edge] (c2s3) edge[bend left=20] node[action, midway, below] {$L$} (c2s2);
+\draw[edge] (c2s3) edge[bend left=20] node[action, midway, above] {$R$} (c2s4);
+\draw[edge] (c2s4) edge[bend left=20] node[action, midway, below] {$L$} (c2s3);
+
+% --- Left arm transitions
+\draw[edge] (c2s0) edge[bend left=20] node[action, midway, right] {$D$} (c2s5);
+\draw[edge] (c2s5) edge[bend left=20] node[action, midway, left] {$U$} (c2s0);
+\draw[edge] (c2s5) edge[bend left=20] node[action, midway, right] {$D$} (c2s6);
+\draw[edge] (c2s6) edge[bend left=20] node[action, midway, left] {$U$} (c2s5);
+
+% --- Middle arm transitions
+\draw[edge] (c2s2) edge[bend left=20] node[action, midway, right] {$D$} (c2s7);
+\draw[edge] (c2s7) edge[bend left=20] node[action, midway, left] {$U$} (c2s2);
+\draw[edge] (c2s7) edge[bend left=20] node[action, midway, right] {$D$} (c2s8);
+
+% --- Right arm transitions
+\draw[edge] (c2s4) edge[bend left=20] node[action, midway, right] {$D$} (c2s9);
+\draw[edge] (c2s9) edge[bend left=20] node[action, midway, left] {$U$} (c2s4);
+\draw[edge] (c2s9) edge[bend left=20] node[action, midway, right] {$D$} (c2s10);
+\draw[edge] (c2s10) edge[bend left=20] node[action, midway, left] {$U$} (c2s9);
+
+\end{scope}
+
+% === Copy 3 ===
+\begin{scope}[yshift=-3.5cm, xshift=6.0cm]
+% --- States (horizontal line)
+\node[state] (c3s0) {0};
+\node[state, right=of c3s0] (c3s1) {1};
+\node[state, right=of c3s1] (c3s2) {2};
+\node[state, right=of c3s2] (c3s3) {3};
+\node[state, right=of c3s3] (c3s4) {4};
+% --- States (left arm, below s0)
+\node[state, below=of c3s0] (c3s5) {5};
+\node[state, below=of c3s5] (c3s6) {6};
+% --- States (middle arm, below s2)
+\node[state, below=of c3s2] (c3s7) {7};
+\node[state, fill=green!20, below=of c3s7] (c3s8) {8};
+% --- States (right arm, below s4)
+\node[state, below=of c3s4] (c3s9) {9};
+\node[state, below=of c3s9] (c3s10) {10};
+
+% --- Horizontal transitions
+\draw[edge] (c3s0) edge[bend left=20] node[action, midway, above] {$R$} (c3s1);
+\draw[edge] (c3s1) edge[bend left=20] node[action, midway, below] {$L$} (c3s0);
+\draw[edge] (c3s1) edge[bend left=20] node[action, midway, above] {$R$} (c3s2);
+\draw[edge] (c3s2) edge[bend left=20] node[action, midway, below] {$L$} (c3s1);
+\draw[edge] (c3s2) edge[bend left=20] node[action, midway, above] {$R$} (c3s3);
+\draw[edge] (c3s3) edge[bend left=20] node[action, midway, below] {$L$} (c3s2);
+\draw[edge] (c3s3) edge[bend left=20] node[action, midway, above] {$R$} (c3s4);
+\draw[edge] (c3s4) edge[bend left=20] node[action, midway, below] {$L$} (c3s3);
+
+% --- Left arm transitions
+\draw[edge] (c3s0) edge[bend left=20] node[action, midway, right] {$D$} (c3s5);
+\draw[edge] (c3s5) edge[bend left=20] node[action, midway, left] {$U$} (c3s0);
+\draw[edge] (c3s5) edge[bend left=20] node[action, midway, right] {$D$} (c3s6);
+\draw[edge] (c3s6) edge[bend left=20] node[action, midway, left] {$U$} (c3s5);
+
+% --- Middle arm transitions
+\draw[edge] (c3s2) edge[bend left=20] node[action, midway, right] {$D$} (c3s7);
+\draw[edge] (c3s7) edge[bend left=20] node[action, midway, left] {$U$} (c3s2);
+\draw[edge] (c3s7) edge[bend left=20] node[action, midway, right] {$D$} (c3s8);
+
+% --- Right arm transitions
+\draw[edge] (c3s4) edge[bend left=20] node[action, midway, right] {$D$} (c3s9);
+\draw[edge] (c3s9) edge[bend left=20] node[action, midway, left] {$U$} (c3s4);
+\draw[edge] (c3s9) edge[bend left=20] node[action, midway, right] {$D$} (c3s10);
+\draw[edge] (c3s10) edge[bend left=20] node[action, midway, left] {$U$} (c3s9);
+
+\end{scope}
+
+% === Copy 4 ===
+\begin{scope}[yshift=-7.0cm, xshift=0.0cm]
+% --- States (horizontal line)
+\node[state] (c4s0) {0};
+\node[state, right=of c4s0] (c4s1) {1};
+\node[state, right=of c4s1] (c4s2) {2};
+\node[state, right=of c4s2] (c4s3) {3};
+\node[state, right=of c4s3] (c4s4) {4};
+% --- States (left arm, below s0)
+\node[state, below=of c4s0] (c4s5) {5};
+\node[state, below=of c4s5] (c4s6) {6};
+% --- States (middle arm, below s2)
+\node[state, below=of c4s2] (c4s7) {7};
+\node[state, fill=green!20, below=of c4s7] (c4s8) {8};
+% --- States (right arm, below s4)
+\node[state, below=of c4s4] (c4s9) {9};
+\node[state, below=of c4s9] (c4s10) {10};
+
+% --- Horizontal transitions
+\draw[edge] (c4s0) edge[bend left=20] node[action, midway, above] {$R$} (c4s1);
+\draw[edge] (c4s1) edge[bend left=20] node[action, midway, below] {$L$} (c4s0);
+\draw[edge] (c4s1) edge[bend left=20] node[action, midway, above] {$R$} (c4s2);
+\draw[edge] (c4s2) edge[bend left=20] node[action, midway, below] {$L$} (c4s1);
+\draw[edge] (c4s2) edge[bend left=20] node[action, midway, above] {$R$} (c4s3);
+\draw[edge] (c4s3) edge[bend left=20] node[action, midway, below] {$L$} (c4s2);
+\draw[edge] (c4s3) edge[bend left=20] node[action, midway, above] {$R$} (c4s4);
+\draw[edge] (c4s4) edge[bend left=20] node[action, midway, below] {$L$} (c4s3);
+
+% --- Left arm transitions
+\draw[edge] (c4s0) edge[bend left=20] node[action, midway, right] {$D$} (c4s5);
+\draw[edge] (c4s5) edge[bend left=20] node[action, midway, left] {$U$} (c4s0);
+\draw[edge] (c4s5) edge[bend left=20] node[action, midway, right] {$D$} (c4s6);
+\draw[edge] (c4s6) edge[bend left=20] node[action, midway, left] {$U$} (c4s5);
+
+% --- Middle arm transitions
+\draw[edge] (c4s2) edge[bend left=20] node[action, midway, right] {$D$} (c4s7);
+\draw[edge] (c4s7) edge[bend left=20] node[action, midway, left] {$U$} (c4s2);
+\draw[edge] (c4s7) edge[bend left=20] node[action, midway, right] {$D$} (c4s8);
+
+% --- Right arm transitions
+\draw[edge] (c4s4) edge[bend left=20] node[action, midway, right] {$D$} (c4s9);
+\draw[edge] (c4s9) edge[bend left=20] node[action, midway, left] {$U$} (c4s4);
+\draw[edge] (c4s9) edge[bend left=20] node[action, midway, right] {$D$} (c4s10);
+\draw[edge] (c4s10) edge[bend left=20] node[action, midway, left] {$U$} (c4s9);
+
+\end{scope}
+
+% === Copy 5 ===
+\begin{scope}[yshift=-7.0cm, xshift=6.0cm]
+% --- States (horizontal line)
+\node[state] (c5s0) {0};
+\node[state, right=of c5s0] (c5s1) {1};
+\node[state, right=of c5s1] (c5s2) {2};
+\node[state, right=of c5s2] (c5s3) {3};
+\node[state, right=of c5s3] (c5s4) {4};
+% --- States (left arm, below s0)
+\node[state, below=of c5s0] (c5s5) {5};
+\node[state, below=of c5s5] (c5s6) {6};
+% --- States (middle arm, below s2)
+\node[state, below=of c5s2] (c5s7) {7};
+\node[state, fill=green!20, below=of c5s7] (c5s8) {8};
+% --- States (right arm, below s4)
+\node[state, below=of c5s4] (c5s9) {9};
+\node[state, below=of c5s9] (c5s10) {10};
+
+% --- Horizontal transitions
+\draw[edge] (c5s0) edge[bend left=20] node[action, midway, above] {$R$} (c5s1);
+\draw[edge] (c5s1) edge[bend left=20] node[action, midway, below] {$L$} (c5s0);
+\draw[edge] (c5s1) edge[bend left=20] node[action, midway, above] {$R$} (c5s2);
+\draw[edge] (c5s2) edge[bend left=20] node[action, midway, below] {$L$} (c5s1);
+\draw[edge] (c5s2) edge[bend left=20] node[action, midway, above] {$R$} (c5s3);
+\draw[edge] (c5s3) edge[bend left=20] node[action, midway, below] {$L$} (c5s2);
+\draw[edge] (c5s3) edge[bend left=20] node[action, midway, above] {$R$} (c5s4);
+\draw[edge] (c5s4) edge[bend left=20] node[action, midway, below] {$L$} (c5s3);
+
+% --- Left arm transitions
+\draw[edge] (c5s0) edge[bend left=20] node[action, midway, right] {$D$} (c5s5);
+\draw[edge] (c5s5) edge[bend left=20] node[action, midway, left] {$U$} (c5s0);
+\draw[edge] (c5s5) edge[bend left=20] node[action, midway, right] {$D$} (c5s6);
+\draw[edge] (c5s6) edge[bend left=20] node[action, midway, left] {$U$} (c5s5);
+
+% --- Middle arm transitions
+\draw[edge] (c5s2) edge[bend left=20] node[action, midway, right] {$D$} (c5s7);
+\draw[edge] (c5s7) edge[bend left=20] node[action, midway, left] {$U$} (c5s2);
+\draw[edge] (c5s7) edge[bend left=20] node[action, midway, right] {$D$} (c5s8);
+
+% --- Right arm transitions
+\draw[edge] (c5s4) edge[bend left=20] node[action, midway, right] {$D$} (c5s9);
+\draw[edge] (c5s9) edge[bend left=20] node[action, midway, left] {$U$} (c5s4);
+\draw[edge] (c5s9) edge[bend left=20] node[action, midway, right] {$D$} (c5s10);
+\draw[edge] (c5s10) edge[bend left=20] node[action, midway, left] {$U$} (c5s9);
+
+\end{scope}
+
+\end{tikzpicture}
