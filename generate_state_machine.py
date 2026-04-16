@@ -344,14 +344,16 @@ def render_tikz(
     # Preamble
     if wrap:
         lines.append("\\begin{tikzpicture}[")
+        lines.append("  scale=0.65,")
+        lines.append("  transform shape,")
         lines.append("  >=Latex,")
         lines.append(
-            "  state/.style={draw,circle,minimum size=8mm,inner sep=0pt,font=\\small},"
+            "  state/.style={draw,circle,minimum size=5mm,inner sep=0pt,font=\\scriptsize},"
         )
-        lines.append("  edge/.style={-Latex,thick},")
+        lines.append("  edge/.style={-Latex,thin},")
         if include_action_labels:
             lines.append("  action/.style={font=\\tiny},")
-        lines.append("  node distance=12mm")
+        lines.append("  node distance=7mm")
         lines.append("]")
         lines.append("")
 
@@ -462,14 +464,16 @@ def render_tikz_stacked(
 
     # Preamble (shared)
     lines.append("\\begin{tikzpicture}[")
+    lines.append("  scale=0.65,")
+    lines.append("  transform shape,")
     lines.append("  >=Latex,")
     lines.append(
-        "  state/.style={draw,circle,minimum size=8mm,inner sep=0pt,font=\\small},"
+        "  state/.style={draw,circle,minimum size=5mm,inner sep=0pt,font=\\scriptsize},"
     )
-    lines.append("  edge/.style={-Latex,thick},")
+    lines.append("  edge/.style={-Latex,thin},")
     if include_action_labels:
         lines.append("  action/.style={font=\\tiny},")
-    lines.append("  node distance=12mm")
+    lines.append("  node distance=7mm")
     lines.append("]")
     lines.append("")
 
@@ -477,9 +481,11 @@ def render_tikz_stacked(
     topo_type = topologies[0].type
     topo_size = topologies[0].size
     row_count = _compute_row_count(topo_type, topo_size)
-    row_height_cm = 2.0  # ~20mm per row
-    padding_cm = 2.0
-    offset_cm = row_count * row_height_cm + padding_cm
+    if topo_type == "Line":
+        row_height_cm = 1.2
+    else:
+        row_height_cm = 1.5
+    offset_cm = row_count * row_height_cm
 
     for idx, topo in enumerate(topologies):
         yshift = -idx * offset_cm
