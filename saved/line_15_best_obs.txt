@@ -49,7 +49,6 @@
 \node[state, right=of c0s13] (c0s14) {};
 
 % --- Transitions
-\draw[edge] (c0s0) edge[loop left] node[action, left] {$L$} (c0s0);
 \draw[edge] (c0s0) edge[bend left=20] node[action, midway, above] {$R$} (c0s1);
 \draw[edge] (c0s1) edge[bend left=20] node[action, midway, below] {$L$} (c0s0);
 \draw[edge] (c0s1) edge[bend left=20] node[action, midway, above] {$R$} (c0s2);
@@ -63,8 +62,6 @@
 \draw[edge] (c0s5) edge[bend left=20] node[action, midway, above] {$R$} (c0s6);
 \draw[edge] (c0s6) edge[bend left=20] node[action, midway, below] {$L$} (c0s5);
 \draw[edge] (c0s6) edge[bend left=20] node[action, midway, above] {$R$} (c0s7);
-\draw[edge] (c0s7) edge[bend left=20] node[action, midway, below] {$L$} (c0s6);
-\draw[edge] (c0s7) edge[bend left=20] node[action, midway, above] {$R$} (c0s8);
 \draw[edge] (c0s8) edge[bend left=20] node[action, midway, below] {$L$} (c0s7);
 \draw[edge] (c0s8) edge[bend left=20] node[action, midway, above] {$R$} (c0s9);
 \draw[edge] (c0s9) edge[bend left=20] node[action, midway, below] {$L$} (c0s8);
@@ -78,7 +75,6 @@
 \draw[edge] (c0s13) edge[bend left=20] node[action, midway, below] {$L$} (c0s12);
 \draw[edge] (c0s13) edge[bend left=20] node[action, midway, above] {$R$} (c0s14);
 \draw[edge] (c0s14) edge[bend left=20] node[action, midway, below] {$L$} (c0s13);
-\draw[edge] (c0s14) edge[loop right] node[action, right] {$R$} (c0s14);
 
 \end{scope}
 
@@ -104,7 +100,6 @@
 \node[state, right=of c1s13] (c1s14) {};
 
 % --- Transitions
-\draw[edge] (c1s0) edge[loop left] node[action, left] {$L$} (c1s0);
 \draw[edge] (c1s0) edge[bend left=20] node[action, midway, above] {$R$} (c1s1);
 \draw[edge] (c1s1) edge[bend left=20] node[action, midway, below] {$L$} (c1s0);
 \draw[edge] (c1s1) edge[bend left=20] node[action, midway, above] {$R$} (c1s2);
@@ -118,8 +113,6 @@
 \draw[edge] (c1s5) edge[bend left=20] node[action, midway, above] {$R$} (c1s6);
 \draw[edge] (c1s6) edge[bend left=20] node[action, midway, below] {$L$} (c1s5);
 \draw[edge] (c1s6) edge[bend left=20] node[action, midway, above] {$R$} (c1s7);
-\draw[edge] (c1s7) edge[bend left=20] node[action, midway, below] {$L$} (c1s6);
-\draw[edge] (c1s7) edge[bend left=20] node[action, midway, above] {$R$} (c1s8);
 \draw[edge] (c1s8) edge[bend left=20] node[action, midway, below] {$L$} (c1s7);
 \draw[edge] (c1s8) edge[bend left=20] node[action, midway, above] {$R$} (c1s9);
 \draw[edge] (c1s9) edge[bend left=20] node[action, midway, below] {$L$} (c1s8);
@@ -133,7 +126,6 @@
 \draw[edge] (c1s13) edge[bend left=20] node[action, midway, below] {$L$} (c1s12);
 \draw[edge] (c1s13) edge[bend left=20] node[action, midway, above] {$R$} (c1s14);
 \draw[edge] (c1s14) edge[bend left=20] node[action, midway, below] {$L$} (c1s13);
-\draw[edge] (c1s14) edge[loop right] node[action, right] {$R$} (c1s14);
 
 \end{scope}
 
@@ -159,7 +151,6 @@
 \node[state, right=of c2s13] (c2s14) {};
 
 % --- Transitions
-\draw[edge] (c2s0) edge[loop left] node[action, left] {$L$} (c2s0);
 \draw[edge] (c2s0) edge[bend left=20] node[action, midway, above] {$R$} (c2s1);
 \draw[edge] (c2s1) edge[bend left=20] node[action, midway, below] {$L$} (c2s0);
 \draw[edge] (c2s1) edge[bend left=20] node[action, midway, above] {$R$} (c2s2);
@@ -173,8 +164,6 @@
 \draw[edge] (c2s5) edge[bend left=20] node[action, midway, above] {$R$} (c2s6);
 \draw[edge] (c2s6) edge[bend left=20] node[action, midway, below] {$L$} (c2s5);
 \draw[edge] (c2s6) edge[bend left=20] node[action, midway, above] {$R$} (c2s7);
-\draw[edge] (c2s7) edge[bend left=20] node[action, midway, below] {$L$} (c2s6);
-\draw[edge] (c2s7) edge[bend left=20] node[action, midway, above] {$R$} (c2s8);
 \draw[edge] (c2s8) edge[bend left=20] node[action, midway, below] {$L$} (c2s7);
 \draw[edge] (c2s8) edge[bend left=20] node[action, midway, above] {$R$} (c2s9);
 \draw[edge] (c2s9) edge[bend left=20] node[action, midway, below] {$L$} (c2s8);
@@ -188,7 +177,6 @@
 \draw[edge] (c2s13) edge[bend left=20] node[action, midway, below] {$L$} (c2s12);
 \draw[edge] (c2s13) edge[bend left=20] node[action, midway, above] {$R$} (c2s14);
 \draw[edge] (c2s14) edge[bend left=20] node[action, midway, below] {$L$} (c2s13);
-\draw[edge] (c2s14) edge[loop right] node[action, right] {$R$} (c2s14);
 
 \end{scope}
 
@@ -214,7 +202,6 @@
 \node[state, right=of c3s13] (c3s14) {};
 
 % --- Transitions
-\draw[edge] (c3s0) edge[loop left] node[action, left] {$L$} (c3s0);
 \draw[edge] (c3s0) edge[bend left=20] node[action, midway, above] {$R$} (c3s1);
 \draw[edge] (c3s1) edge[bend left=20] node[action, midway, below] {$L$} (c3s0);
 \draw[edge] (c3s1) edge[bend left=20] node[action, midway, above] {$R$} (c3s2);
@@ -228,8 +215,6 @@
 \draw[edge] (c3s5) edge[bend left=20] node[action, midway, above] {$R$} (c3s6);
 \draw[edge] (c3s6) edge[bend left=20] node[action, midway, below] {$L$} (c3s5);
 \draw[edge] (c3s6) edge[bend left=20] node[action, midway, above] {$R$} (c3s7);
-\draw[edge] (c3s7) edge[bend left=20] node[action, midway, below] {$L$} (c3s6);
-\draw[edge] (c3s7) edge[bend left=20] node[action, midway, above] {$R$} (c3s8);
 \draw[edge] (c3s8) edge[bend left=20] node[action, midway, below] {$L$} (c3s7);
 \draw[edge] (c3s8) edge[bend left=20] node[action, midway, above] {$R$} (c3s9);
 \draw[edge] (c3s9) edge[bend left=20] node[action, midway, below] {$L$} (c3s8);
@@ -243,7 +228,6 @@
 \draw[edge] (c3s13) edge[bend left=20] node[action, midway, below] {$L$} (c3s12);
 \draw[edge] (c3s13) edge[bend left=20] node[action, midway, above] {$R$} (c3s14);
 \draw[edge] (c3s14) edge[bend left=20] node[action, midway, below] {$L$} (c3s13);
-\draw[edge] (c3s14) edge[loop right] node[action, right] {$R$} (c3s14);
 
 \end{scope}
 
@@ -269,7 +253,6 @@
 \node[state, right=of c4s13] (c4s14) {};
 
 % --- Transitions
-\draw[edge] (c4s0) edge[loop left] node[action, left] {$L$} (c4s0);
 \draw[edge] (c4s0) edge[bend left=20] node[action, midway, above] {$R$} (c4s1);
 \draw[edge] (c4s1) edge[bend left=20] node[action, midway, below] {$L$} (c4s0);
 \draw[edge] (c4s1) edge[bend left=20] node[action, midway, above] {$R$} (c4s2);
@@ -283,8 +266,6 @@
 \draw[edge] (c4s5) edge[bend left=20] node[action, midway, above] {$R$} (c4s6);
 \draw[edge] (c4s6) edge[bend left=20] node[action, midway, below] {$L$} (c4s5);
 \draw[edge] (c4s6) edge[bend left=20] node[action, midway, above] {$R$} (c4s7);
-\draw[edge] (c4s7) edge[bend left=20] node[action, midway, below] {$L$} (c4s6);
-\draw[edge] (c4s7) edge[bend left=20] node[action, midway, above] {$R$} (c4s8);
 \draw[edge] (c4s8) edge[bend left=20] node[action, midway, below] {$L$} (c4s7);
 \draw[edge] (c4s8) edge[bend left=20] node[action, midway, above] {$R$} (c4s9);
 \draw[edge] (c4s9) edge[bend left=20] node[action, midway, below] {$L$} (c4s8);
@@ -298,7 +279,6 @@
 \draw[edge] (c4s13) edge[bend left=20] node[action, midway, below] {$L$} (c4s12);
 \draw[edge] (c4s13) edge[bend left=20] node[action, midway, above] {$R$} (c4s14);
 \draw[edge] (c4s14) edge[bend left=20] node[action, midway, below] {$L$} (c4s13);
-\draw[edge] (c4s14) edge[loop right] node[action, right] {$R$} (c4s14);
 
 \end{scope}
 
@@ -324,7 +304,6 @@
 \node[state, right=of c5s13] (c5s14) {};
 
 % --- Transitions
-\draw[edge] (c5s0) edge[loop left] node[action, left] {$L$} (c5s0);
 \draw[edge] (c5s0) edge[bend left=20] node[action, midway, above] {$R$} (c5s1);
 \draw[edge] (c5s1) edge[bend left=20] node[action, midway, below] {$L$} (c5s0);
 \draw[edge] (c5s1) edge[bend left=20] node[action, midway, above] {$R$} (c5s2);
@@ -338,8 +317,6 @@
 \draw[edge] (c5s5) edge[bend left=20] node[action, midway, above] {$R$} (c5s6);
 \draw[edge] (c5s6) edge[bend left=20] node[action, midway, below] {$L$} (c5s5);
 \draw[edge] (c5s6) edge[bend left=20] node[action, midway, above] {$R$} (c5s7);
-\draw[edge] (c5s7) edge[bend left=20] node[action, midway, below] {$L$} (c5s6);
-\draw[edge] (c5s7) edge[bend left=20] node[action, midway, above] {$R$} (c5s8);
 \draw[edge] (c5s8) edge[bend left=20] node[action, midway, below] {$L$} (c5s7);
 \draw[edge] (c5s8) edge[bend left=20] node[action, midway, above] {$R$} (c5s9);
 \draw[edge] (c5s9) edge[bend left=20] node[action, midway, below] {$L$} (c5s8);
@@ -353,7 +330,6 @@
 \draw[edge] (c5s13) edge[bend left=20] node[action, midway, below] {$L$} (c5s12);
 \draw[edge] (c5s13) edge[bend left=20] node[action, midway, above] {$R$} (c5s14);
 \draw[edge] (c5s14) edge[bend left=20] node[action, midway, below] {$L$} (c5s13);
-\draw[edge] (c5s14) edge[loop right] node[action, right] {$R$} (c5s14);
 
 \end{scope}
 
@@ -379,7 +355,6 @@
 \node[state, right=of c6s13] (c6s14) {};
 
 % --- Transitions
-\draw[edge] (c6s0) edge[loop left] node[action, left] {$L$} (c6s0);
 \draw[edge] (c6s0) edge[bend left=20] node[action, midway, above] {$R$} (c6s1);
 \draw[edge] (c6s1) edge[bend left=20] node[action, midway, below] {$L$} (c6s0);
 \draw[edge] (c6s1) edge[bend left=20] node[action, midway, above] {$R$} (c6s2);
@@ -393,8 +368,6 @@
 \draw[edge] (c6s5) edge[bend left=20] node[action, midway, above] {$R$} (c6s6);
 \draw[edge] (c6s6) edge[bend left=20] node[action, midway, below] {$L$} (c6s5);
 \draw[edge] (c6s6) edge[bend left=20] node[action, midway, above] {$R$} (c6s7);
-\draw[edge] (c6s7) edge[bend left=20] node[action, midway, below] {$L$} (c6s6);
-\draw[edge] (c6s7) edge[bend left=20] node[action, midway, above] {$R$} (c6s8);
 \draw[edge] (c6s8) edge[bend left=20] node[action, midway, below] {$L$} (c6s7);
 \draw[edge] (c6s8) edge[bend left=20] node[action, midway, above] {$R$} (c6s9);
 \draw[edge] (c6s9) edge[bend left=20] node[action, midway, below] {$L$} (c6s8);
@@ -408,7 +381,6 @@
 \draw[edge] (c6s13) edge[bend left=20] node[action, midway, below] {$L$} (c6s12);
 \draw[edge] (c6s13) edge[bend left=20] node[action, midway, above] {$R$} (c6s14);
 \draw[edge] (c6s14) edge[bend left=20] node[action, midway, below] {$L$} (c6s13);
-\draw[edge] (c6s14) edge[loop right] node[action, right] {$R$} (c6s14);
 
 \end{scope}
 

@@ -41,24 +41,6 @@
 \node[state, right=of c0s22] (c0s23) {23};
 \node[state, fill=green!20, right=of c0s23] (c0s24) {24};
 
-% --- Self-loops (perimeter states)
-\draw[edge] (c0s0) edge[loop above] node[action, above] {$L, U$} (c0s0);
-\draw[edge] (c0s1) edge[loop above] node[action, above] {$U$} (c0s1);
-\draw[edge] (c0s2) edge[loop above] node[action, above] {$U$} (c0s2);
-\draw[edge] (c0s3) edge[loop above] node[action, above] {$U$} (c0s3);
-\draw[edge] (c0s4) edge[loop above] node[action, above] {$R, U$} (c0s4);
-\draw[edge] (c0s5) edge[loop left] node[action, left] {$L$} (c0s5);
-\draw[edge] (c0s9) edge[loop right] node[action, right] {$R$} (c0s9);
-\draw[edge] (c0s10) edge[loop left] node[action, left] {$L$} (c0s10);
-\draw[edge] (c0s14) edge[loop right] node[action, right] {$R$} (c0s14);
-\draw[edge] (c0s15) edge[loop left] node[action, left] {$L$} (c0s15);
-\draw[edge] (c0s19) edge[loop right] node[action, right] {$R$} (c0s19);
-\draw[edge] (c0s20) edge[loop below] node[action, below] {$L, D$} (c0s20);
-\draw[edge] (c0s21) edge[loop below] node[action, below] {$D$} (c0s21);
-\draw[edge] (c0s22) edge[loop below] node[action, below] {$D$} (c0s22);
-\draw[edge] (c0s23) edge[loop below] node[action, below] {$D$} (c0s23);
-\draw[edge] (c0s24) edge[loop below] node[action, below] {$R, D$} (c0s24);
-
 % --- Horizontal transitions
 \draw[edge] (c0s0) edge[bend left=20] node[action, midway, above] {$R$} (c0s1);
 \draw[edge] (c0s1) edge[bend left=20] node[action, midway, below] {$L$} (c0s0);
@@ -99,7 +81,6 @@
 \draw[edge] (c0s22) edge[bend left=20] node[action, midway, above] {$R$} (c0s23);
 \draw[edge] (c0s23) edge[bend left=20] node[action, midway, below] {$L$} (c0s22);
 \draw[edge] (c0s23) edge[bend left=20] node[action, midway, above] {$R$} (c0s24);
-\draw[edge] (c0s24) edge[bend left=20] node[action, midway, below] {$L$} (c0s23);
 
 % --- Vertical transitions
 \draw[edge] (c0s0) edge[bend left=20] node[action, midway, right] {$D$} (c0s5);
@@ -141,12 +122,11 @@
 \draw[edge] (c0s18) edge[bend left=20] node[action, midway, right] {$D$} (c0s23);
 \draw[edge] (c0s23) edge[bend left=20] node[action, midway, left] {$U$} (c0s18);
 \draw[edge] (c0s19) edge[bend left=20] node[action, midway, right] {$D$} (c0s24);
-\draw[edge] (c0s24) edge[bend left=20] node[action, midway, left] {$U$} (c0s19);
 
 \end{scope}
 
 % === Copy 1 === (top-right)
-\begin{scope}[xshift=7.0cm, yshift=0.0cm]
+\begin{scope}[xshift=6.0cm, yshift=0.0cm]
 % --- States (row 0)
 \node[state] (c1s0) {0};
 \node[state, right=of c1s0] (c1s1) {1};
@@ -177,24 +157,6 @@
 \node[state, fill=red!20, right=of c1s21] (c1s22) {22};
 \node[state, right=of c1s22] (c1s23) {23};
 \node[state, fill=green!20, right=of c1s23] (c1s24) {24};
-
-% --- Self-loops (perimeter states)
-\draw[edge] (c1s0) edge[loop above] node[action, above] {$L, U$} (c1s0);
-\draw[edge] (c1s1) edge[loop above] node[action, above] {$U$} (c1s1);
-\draw[edge] (c1s2) edge[loop above] node[action, above] {$U$} (c1s2);
-\draw[edge] (c1s3) edge[loop above] node[action, above] {$U$} (c1s3);
-\draw[edge] (c1s4) edge[loop above] node[action, above] {$R, U$} (c1s4);
-\draw[edge] (c1s5) edge[loop left] node[action, left] {$L$} (c1s5);
-\draw[edge] (c1s9) edge[loop right] node[action, right] {$R$} (c1s9);
-\draw[edge] (c1s10) edge[loop left] node[action, left] {$L$} (c1s10);
-\draw[edge] (c1s14) edge[loop right] node[action, right] {$R$} (c1s14);
-\draw[edge] (c1s15) edge[loop left] node[action, left] {$L$} (c1s15);
-\draw[edge] (c1s19) edge[loop right] node[action, right] {$R$} (c1s19);
-\draw[edge] (c1s20) edge[loop below] node[action, below] {$L, D$} (c1s20);
-\draw[edge] (c1s21) edge[loop below] node[action, below] {$D$} (c1s21);
-\draw[edge] (c1s22) edge[loop below] node[action, below] {$D$} (c1s22);
-\draw[edge] (c1s23) edge[loop below] node[action, below] {$D$} (c1s23);
-\draw[edge] (c1s24) edge[loop below] node[action, below] {$R, D$} (c1s24);
 
 % --- Horizontal transitions
 \draw[edge] (c1s0) edge[bend left=20] node[action, midway, above] {$R$} (c1s1);
@@ -236,7 +198,6 @@
 \draw[edge] (c1s22) edge[bend left=20] node[action, midway, above] {$R$} (c1s23);
 \draw[edge] (c1s23) edge[bend left=20] node[action, midway, below] {$L$} (c1s22);
 \draw[edge] (c1s23) edge[bend left=20] node[action, midway, above] {$R$} (c1s24);
-\draw[edge] (c1s24) edge[bend left=20] node[action, midway, below] {$L$} (c1s23);
 
 % --- Vertical transitions
 \draw[edge] (c1s0) edge[bend left=20] node[action, midway, right] {$D$} (c1s5);
@@ -278,12 +239,11 @@
 \draw[edge] (c1s18) edge[bend left=20] node[action, midway, right] {$D$} (c1s23);
 \draw[edge] (c1s23) edge[bend left=20] node[action, midway, left] {$U$} (c1s18);
 \draw[edge] (c1s19) edge[bend left=20] node[action, midway, right] {$D$} (c1s24);
-\draw[edge] (c1s24) edge[bend left=20] node[action, midway, left] {$U$} (c1s19);
 
 \end{scope}
 
 % === Copy 2 === (bottom-left)
-\begin{scope}[xshift=0.0cm, yshift=-7.0cm]
+\begin{scope}[xshift=0.0cm, yshift=-6.0cm]
 % --- States (row 0)
 \node[state] (c2s0) {0};
 \node[state, right=of c2s0] (c2s1) {1};
@@ -314,24 +274,6 @@
 \node[state, right=of c2s21] (c2s22) {22};
 \node[state, fill=red!20, right=of c2s22] (c2s23) {23};
 \node[state, fill=green!20, right=of c2s23] (c2s24) {24};
-
-% --- Self-loops (perimeter states)
-\draw[edge] (c2s0) edge[loop above] node[action, above] {$L, U$} (c2s0);
-\draw[edge] (c2s1) edge[loop above] node[action, above] {$U$} (c2s1);
-\draw[edge] (c2s2) edge[loop above] node[action, above] {$U$} (c2s2);
-\draw[edge] (c2s3) edge[loop above] node[action, above] {$U$} (c2s3);
-\draw[edge] (c2s4) edge[loop above] node[action, above] {$R, U$} (c2s4);
-\draw[edge] (c2s5) edge[loop left] node[action, left] {$L$} (c2s5);
-\draw[edge] (c2s9) edge[loop right] node[action, right] {$R$} (c2s9);
-\draw[edge] (c2s10) edge[loop left] node[action, left] {$L$} (c2s10);
-\draw[edge] (c2s14) edge[loop right] node[action, right] {$R$} (c2s14);
-\draw[edge] (c2s15) edge[loop left] node[action, left] {$L$} (c2s15);
-\draw[edge] (c2s19) edge[loop right] node[action, right] {$R$} (c2s19);
-\draw[edge] (c2s20) edge[loop below] node[action, below] {$L, D$} (c2s20);
-\draw[edge] (c2s21) edge[loop below] node[action, below] {$D$} (c2s21);
-\draw[edge] (c2s22) edge[loop below] node[action, below] {$D$} (c2s22);
-\draw[edge] (c2s23) edge[loop below] node[action, below] {$D$} (c2s23);
-\draw[edge] (c2s24) edge[loop below] node[action, below] {$R, D$} (c2s24);
 
 % --- Horizontal transitions
 \draw[edge] (c2s0) edge[bend left=20] node[action, midway, above] {$R$} (c2s1);
@@ -373,7 +315,6 @@
 \draw[edge] (c2s22) edge[bend left=20] node[action, midway, above] {$R$} (c2s23);
 \draw[edge] (c2s23) edge[bend left=20] node[action, midway, below] {$L$} (c2s22);
 \draw[edge] (c2s23) edge[bend left=20] node[action, midway, above] {$R$} (c2s24);
-\draw[edge] (c2s24) edge[bend left=20] node[action, midway, below] {$L$} (c2s23);
 
 % --- Vertical transitions
 \draw[edge] (c2s0) edge[bend left=20] node[action, midway, right] {$D$} (c2s5);
@@ -415,12 +356,11 @@
 \draw[edge] (c2s18) edge[bend left=20] node[action, midway, right] {$D$} (c2s23);
 \draw[edge] (c2s23) edge[bend left=20] node[action, midway, left] {$U$} (c2s18);
 \draw[edge] (c2s19) edge[bend left=20] node[action, midway, right] {$D$} (c2s24);
-\draw[edge] (c2s24) edge[bend left=20] node[action, midway, left] {$U$} (c2s19);
 
 \end{scope}
 
 % === Copy 3 === (bottom-right)
-\begin{scope}[xshift=7.0cm, yshift=-7.0cm]
+\begin{scope}[xshift=6.0cm, yshift=-6.0cm]
 % --- States (row 0)
 \node[state] (c3s0) {0};
 \node[state, right=of c3s0] (c3s1) {1};
@@ -451,24 +391,6 @@
 \node[state, fill=red!20, right=of c3s21] (c3s22) {22};
 \node[state, fill=red!20, right=of c3s22] (c3s23) {23};
 \node[state, fill=green!20, right=of c3s23] (c3s24) {24};
-
-% --- Self-loops (perimeter states)
-\draw[edge] (c3s0) edge[loop above] node[action, above] {$L, U$} (c3s0);
-\draw[edge] (c3s1) edge[loop above] node[action, above] {$U$} (c3s1);
-\draw[edge] (c3s2) edge[loop above] node[action, above] {$U$} (c3s2);
-\draw[edge] (c3s3) edge[loop above] node[action, above] {$U$} (c3s3);
-\draw[edge] (c3s4) edge[loop above] node[action, above] {$R, U$} (c3s4);
-\draw[edge] (c3s5) edge[loop left] node[action, left] {$L$} (c3s5);
-\draw[edge] (c3s9) edge[loop right] node[action, right] {$R$} (c3s9);
-\draw[edge] (c3s10) edge[loop left] node[action, left] {$L$} (c3s10);
-\draw[edge] (c3s14) edge[loop right] node[action, right] {$R$} (c3s14);
-\draw[edge] (c3s15) edge[loop left] node[action, left] {$L$} (c3s15);
-\draw[edge] (c3s19) edge[loop right] node[action, right] {$R$} (c3s19);
-\draw[edge] (c3s20) edge[loop below] node[action, below] {$L, D$} (c3s20);
-\draw[edge] (c3s21) edge[loop below] node[action, below] {$D$} (c3s21);
-\draw[edge] (c3s22) edge[loop below] node[action, below] {$D$} (c3s22);
-\draw[edge] (c3s23) edge[loop below] node[action, below] {$D$} (c3s23);
-\draw[edge] (c3s24) edge[loop below] node[action, below] {$R, D$} (c3s24);
 
 % --- Horizontal transitions
 \draw[edge] (c3s0) edge[bend left=20] node[action, midway, above] {$R$} (c3s1);
@@ -510,7 +432,6 @@
 \draw[edge] (c3s22) edge[bend left=20] node[action, midway, above] {$R$} (c3s23);
 \draw[edge] (c3s23) edge[bend left=20] node[action, midway, below] {$L$} (c3s22);
 \draw[edge] (c3s23) edge[bend left=20] node[action, midway, above] {$R$} (c3s24);
-\draw[edge] (c3s24) edge[bend left=20] node[action, midway, below] {$L$} (c3s23);
 
 % --- Vertical transitions
 \draw[edge] (c3s0) edge[bend left=20] node[action, midway, right] {$D$} (c3s5);
@@ -552,7 +473,6 @@
 \draw[edge] (c3s18) edge[bend left=20] node[action, midway, right] {$D$} (c3s23);
 \draw[edge] (c3s23) edge[bend left=20] node[action, midway, left] {$U$} (c3s18);
 \draw[edge] (c3s19) edge[bend left=20] node[action, midway, right] {$D$} (c3s24);
-\draw[edge] (c3s24) edge[bend left=20] node[action, midway, left] {$U$} (c3s19);
 
 \end{scope}
 
