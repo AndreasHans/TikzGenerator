@@ -96,3 +96,7 @@ Then include the generated file:
 ```
 
 See each tool's documentation for full argument reference and examples.
+
+## Development
+
+This tool was developed entirely through AI-assisted generation. See [DEVELOPMENT_PROCESS.md](DEVELOPMENT_PROCESS.md) for details.
