@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TikZ Viewer</title>
+  <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; margin: 0; color: #222; background: #f4f5f7; }
+    header { padding: 0.75rem 1.25rem; background: #fff; border-bottom: 1px solid #ddd; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    header h1 { font-size: 1.05rem; margin: 0; }
+    .grow { flex: 1; }
+    button { font: inherit; padding: 0.4rem 0.9rem; border: 1px solid #bbb; background: #fff; border-radius: 5px; cursor: pointer; }
+    button.primary { background: #2563eb; color: #fff; border-color: #2563eb; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    #status { font-size: 0.85rem; padding: 0.25rem 0.6rem; border-radius: 999px; background: #eef; color: #335; }
+    #status.ok { background: #dcfce7; color: #166534; }
+    #status.err { background: #fee2e2; color: #991b1b; }
+    #status.busy { background: #fef3c7; color: #92400e; }
+    main { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #ddd; height: calc(100vh - 58px); }
+    .pane { background: #fff; display: flex; flex-direction: column; min-height: 0; }
+    .pane h2 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; margin: 0; padding: 0.5rem 0.9rem; border-bottom: 1px solid #eee; background: #fafafa; }
+    #editor { flex: 1; width: 100%; border: 0; padding: 0.75rem; font-family: ui-monospace, Consolas, monospace; font-size: 0.82rem; resize: none; outline: none; }
+    #preview { flex: 1; overflow: hidden; padding: 0; text-align: center; position: relative; background: #fff; cursor: grab; }
+    #preview.dragging { cursor: grabbing; }
+    #viewport { position: absolute; top: 0; left: 0; transform-origin: 0 0; width: 100%; height: 100%; }
+    #zoomCtrls { position: absolute; top: 8px; right: 8px; display: flex; gap: 4px; z-index: 10; }
+    #zoomCtrls button { padding: 0.25rem 0.5rem; font-size: 0.8rem; background: rgba(255,255,255,0.95); }
+    #log { border-top: 1px solid #eee; padding: 0.5rem 0.9rem; background: #fafafa; font-family: ui-monospace, Consolas, monospace; font-size: 0.72rem; color: #555; white-space: pre-wrap; max-height: 150px; overflow: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>TikZ Viewer</h1>
+    <span id="status">idle</span>
+    <div class="grow"></div>
+    <button id="renderBtn" class="primary">Render</button>
+  </header>
+  <main>
+    <section class="pane">
+      <h2>Source</h2>
+      <textarea id="editor" spellcheck="false"></textarea>
+    </section>
+    <section class="pane">
+      <h2>Preview</h2>
+      <div id="preview">
+        <div id="zoomCtrls">
+          <button id="zoomOut" title="Zoom out">−</button>
+          <button id="zoomReset" title="Reset view">⟳</button>
+          <button id="zoomIn" title="Zoom in">+</button>
+        </div>
+        <div id="viewport">Click Render to compile.</div>
+      </div>
+      <div id="log"></div>
+    </section>
+  </main>
+  <script>
+    const editor = document.getElementById("editor");
+    const preview = document.getElementById("preview");
+    const viewport = document.getElementById("viewport");
+    const logEl = document.getElementById("log");
+    const statusEl = document.getElementById("status");
+    const renderBtn = document.getElementById("renderBtn");
+    let tikzjaxLoaded = false;
+    let renderStart = 0;
+    let watchdog = null;
+    const origLog = console.log.bind(console);
+    const origErr = console.error.bind(console);
+    const log = (msg) => {
+      const t = ((performance.now() - renderStart) / 1000).toFixed(1);
+      logEl.textContent += "[" + t + "s] " + msg + "\n";
+      logEl.scrollTop = logEl.scrollHeight;
+      origLog("[viewer]", msg);
+    };
+    console.log = (...args) => {
+      origLog(...args);
+      const line = args.map(a => typeof a === "string" ? a : JSON.stringify(a)).join(" ");
+      if (!line.startsWith("[viewer]")) log("stdout: " + line.slice(0, 300));
+    };
+    console.error = (...args) => {
+      origErr(...args);
+      const line = args.map(a => typeof a === "string" ? a : String(a)).join(" ");
+      log("stderr: " + line.slice(0, 300));
+    };
+    window.addEventListener("error", (e) => log("window.error: " + (e.message || e.error)));
+    const setStatus = (text, cls) => { statusEl.textContent = text; statusEl.className = cls || ""; };
+    document.addEventListener("tikzjax-load-finished", () => {
+      const elapsed = ((performance.now() - renderStart) / 1000).toFixed(1);
+      log("tikzjax finished (" + elapsed + "s)");
+      setStatus("rendered in " + elapsed + "s", "ok");
+      renderBtn.disabled = false;
+      if (watchdog) { clearInterval(watchdog); watchdog = null; }
+    });
+    function render() {
+      let tikz = editor.value.trim();
+      if (!tikz) { setStatus("nothing to render", "err"); return; }
+      if (!/\\begin\{tikzpicture\}/.test(tikz)) {
+        tikz = "\\begin{tikzpicture}\n" + tikz + "\n\\end{tikzpicture}";
+      }
+      // Replace bare "bot" with "\bot" inside math-mode segments so it renders as ⊥
+      // instead of italic b·o·t. Only substitute whole words not already escaped.
+      tikz = tikz.replace(/\$([^$]*)\$/g, (m, inner) => {
+        let s = inner.replace(/(?<!\\)\bbot\b/g, '\\bot');
+        // TikZJax's bundled cmmi font is missing the math-italic '/' glyph
+        // (renders as a left-pointing triangle). Wrap it in \text{} to use
+        // the text font instead.
+        s = s.replace(/\//g, '\\text{/}');
+        return '$' + s + '$';
+      });
+      renderStart = performance.now();
+      viewport.innerHTML = "";
+      resetView();
+      renderBtn.disabled = true;
+      setStatus("compiling...", "busy");
+      log("building iframe");
+
+      // TikZJax scans for <script type="text/tikz"> on DOMContentLoaded.
+      // Use an iframe so the scripts are present at load-time.
+      const iframe = document.createElement('iframe');
+      iframe.style.cssText = 'width:100%;height:100%;border:0;background:#fff;pointer-events:none;';
+      viewport.appendChild(iframe);
+
+      const html =
+        '<!DOCTYPE html><html><head><meta charset="UTF-8">' +
+        '<link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">' +
+        '<style>body{margin:0;padding:1rem;text-align:center;font-family:system-ui;}</style>' +
+        '</head><body>' +
+        '<script type="text/tikz" data-show-console="true">' + tikz + '<\/script>' +
+        '<script src="https://tikzjax.com/v1/tikzjax.js"><\/script>' +
+        '<script>' +
+        'document.addEventListener("tikzjax-load-finished",function(){parent.postMessage({type:"tikz-done"},"*");});' +
+        'window.addEventListener("error",function(e){parent.postMessage({type:"tikz-err",msg:String(e.message||e.error)},"*");});' +
+        '<\/script>' +
+        '</body></html>';
+
+      iframe.srcdoc = html;
+
+      if (watchdog) clearInterval(watchdog);
+      let ticks = 0;
+      watchdog = setInterval(function(){
+        ticks++;
+        const svg = iframe.contentDocument && iframe.contentDocument.querySelector('svg');
+        log('tick ' + ticks + ' | iframe svg: ' + !!svg);
+        if (svg) {
+          const elapsed = ((performance.now() - renderStart) / 1000).toFixed(1);
+          setStatus('rendered in ' + elapsed + 's', 'ok');
+          clearInterval(watchdog); watchdog = null;
+          renderBtn.disabled = false;
+        } else if (ticks >= 30) {
+          log('timeout after 90s');
+          setStatus('timeout', 'err');
+          clearInterval(watchdog); watchdog = null;
+          renderBtn.disabled = false;
+        }
+      }, 3000);
+    }
+    renderBtn.addEventListener("click", render);
+
+    window.addEventListener('message', (e) => {
+      if (!e.data || typeof e.data !== 'object') return;
+      if (e.data.type === 'tikz-done') log('iframe: tikzjax-load-finished');
+      if (e.data.type === 'tikz-err')  log('iframe error: ' + e.data.msg);
+    });
+
+    editor.value = "\\begin{tikzpicture}\n  \\node[draw,circle] (a) {A};\n  \\node[draw,circle,right=of a] (b) {B};\n  \\draw[->] (a) -- (b);\n\\end{tikzpicture}";
+
+    // --- Pan & zoom for the preview pane ---
+    let zoom = 1, panX = 0, panY = 0;
+    function applyTransform() {
+      viewport.style.transform = 'translate(' + panX + 'px,' + panY + 'px) scale(' + zoom + ')';
+    }
+    function resetView() { zoom = 1; panX = 0; panY = 0; applyTransform(); }
+
+    function zoomAt(clientX, clientY, factor) {
+      const rect = preview.getBoundingClientRect();
+      const x = clientX - rect.left, y = clientY - rect.top;
+      // keep the point under cursor stable across the zoom
+      panX = x - (x - panX) * factor;
+      panY = y - (y - panY) * factor;
+      zoom = Math.max(0.1, Math.min(20, zoom * factor));
+      applyTransform();
+    }
+
+    preview.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      zoomAt(e.clientX, e.clientY, e.deltaY < 0 ? 1.15 : 1/1.15);
+    }, { passive: false });
+
+    let dragging = false, lastX = 0, lastY = 0;
+    preview.addEventListener('mousedown', (e) => {
+      dragging = true; lastX = e.clientX; lastY = e.clientY;
+      preview.classList.add('dragging');
+      e.preventDefault();
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (!dragging) return;
+      panX += e.clientX - lastX;
+      panY += e.clientY - lastY;
+      lastX = e.clientX; lastY = e.clientY;
+      applyTransform();
+    });
+    window.addEventListener('mouseup', () => {
+      if (!dragging) return;
+      dragging = false;
+      preview.classList.remove('dragging');
+    });
+
+    document.getElementById('zoomIn').addEventListener('click', () => {
+      const r = preview.getBoundingClientRect();
+      zoomAt(r.left + r.width/2, r.top + r.height/2, 1.25);
+    });
+    document.getElementById('zoomOut').addEventListener('click', () => {
+      const r = preview.getBoundingClientRect();
+      zoomAt(r.left + r.width/2, r.top + r.height/2, 1/1.25);
+    });
+    document.getElementById('zoomReset').addEventListener('click', resetView);
+  </script>
+</body>
+</html>
