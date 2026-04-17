@@ -1,0 +1,78 @@
+\begin{tikzpicture}[
+  scale=0.65,
+  transform shape,
+  >=Latex,
+  state/.style={draw,circle,minimum size=5mm,inner sep=0pt,font=\scriptsize},
+  edge/.style={-Latex,thin},
+  action/.style={font=\tiny},
+  label/.style={font=\tiny},
+  node distance=7mm
+]
+
+% === State Machine ===
+% --- States (horizontal line)
+\node[state] (s0) {0};
+\node[state, right=of s0] (s1) {1};
+\node[state, right=of s1] (s2) {2};
+\node[state, right=of s2] (s3) {3};
+\node[state, fill=red!20, right=of s3] (s4) {4};
+% --- States (left arm, below s0)
+\node[state, below=of s0] (s5) {5};
+\node[state, below=of s5] (s6) {6};
+% --- States (middle arm, below s2)
+\node[state, below=of s2] (s7) {7};
+\node[state, fill=green!20, below=of s7] (s8) {8};
+% --- States (right arm, below s4)
+\node[state, below=of s4] (s9) {9};
+\node[state, below=of s9] (s10) {10};
+
+% --- Horizontal transitions
+\draw[edge] (s0) edge[bend left=20] node[action, midway, above] {$R$} (s1);
+\draw[edge] (s1) edge[bend left=20] node[action, midway, below] {$L$} (s0);
+\draw[edge] (s1) edge[bend left=20] node[action, midway, above] {$R$} (s2);
+\draw[edge] (s2) edge[bend left=20] node[action, midway, below] {$L$} (s1);
+\draw[edge] (s2) edge[bend left=20] node[action, midway, above] {$R$} (s3);
+\draw[edge] (s3) edge[bend left=20] node[action, midway, below] {$L$} (s2);
+\draw[edge] (s3) edge[bend left=20] node[action, midway, above] {$R$} (s4);
+\draw[edge] (s4) edge[bend left=20] node[action, midway, below] {$L$} (s3);
+
+% --- Left arm transitions
+\draw[edge] (s0) edge[bend left=20] node[action, midway, right] {$D$} (s5);
+\draw[edge] (s5) edge[bend left=20] node[action, midway, left] {$U$} (s0);
+\draw[edge] (s5) edge[bend left=20] node[action, midway, right] {$D$} (s6);
+\draw[edge] (s6) edge[bend left=20] node[action, midway, left] {$U$} (s5);
+
+% --- Middle arm transitions
+\draw[edge] (s2) edge[bend left=20] node[action, midway, right] {$D$} (s7);
+\draw[edge] (s7) edge[bend left=20] node[action, midway, left] {$U$} (s2);
+\draw[edge] (s7) edge[bend left=20] node[action, midway, right] {$D$} (s8);
+\draw[edge] (s8) edge[bend left=20] node[action, midway, left] {$U$} (s7);
+
+% --- Right arm transitions
+\draw[edge] (s4) edge[bend left=20] node[action, midway, right] {$D$} (s9);
+\draw[edge] (s9) edge[bend left=20] node[action, midway, left] {$U$} (s4);
+\draw[edge] (s9) edge[bend left=20] node[action, midway, right] {$D$} (s10);
+\draw[edge] (s10) edge[bend left=20] node[action, midway, left] {$U$} (s9);
+
+% === Mealy Machine ===
+\begin{scope}[xshift=11.0cm, yshift=-0.70cm]
+% --- States
+\node[state] (m0) at (0.00,1.60) {$c_0$};
+\node[state] (m1) at (1.60,0.00) {$c_1$};
+\node[state] (m2) at (0.00,-1.60) {$c_2$};
+\node[state] (m3) at (-1.60,-0.00) {$c_3$};
+
+% --- Initial state
+\draw[edge] (0.80,1.60) -- (m0);
+
+% --- Transitions
+\draw[edge] (m0) edge[] node[label, midway, auto] {$4/L$} (m2);
+\draw[edge] (m0) edge[bend left=15, ] node[label, midway, auto] {$bot/U$} (m1);
+\draw[edge] (m1) edge[] node[label, midway, auto] {$4/L$} (m2);
+\draw[edge] (m1) edge[bend left=15, ] node[label, midway, auto] {$bot/R$} (m0);
+\draw[edge] (m2) edge[bend left=15, ] node[label, midway, auto] {$4/L, bot/L$} (m3);
+\draw[edge] (m3) edge[bend left=15, ] node[label, midway, auto] {$4/U$} (m2);
+\draw[edge] (m3) edge[loop left] node[label, left] {$bot/D$} (m3);
+\end{scope}
+
+\end{tikzpicture}
