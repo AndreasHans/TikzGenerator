@@ -50,7 +50,7 @@ def parse_input(filepath: str):
                 continue
 
             # delta(c,o,c')
-            m = re.match(r"^delta\((\d+),([^,]+),(\d+)\)$", line)
+            m = re.match(r"^delta\((\d+),\s*([^,]+?)\s*,\s*(\d+)\)$", line)
             if m:
                 deltas.append((int(m.group(1)), m.group(2).strip(), int(m.group(3))))
                 continue
@@ -231,7 +231,7 @@ def combine_figures(sm_path: Path, mm_path: Path, out_path: Path, topo_type: str
     # Place Mealy machine to the right of the state machine
     # Use column count (horizontal extent) rather than total node count
     col_count = _compute_column_count(topo_type, size)
-    xshift = col_count * 1.0 + 3.0  # extra padding
+    xshift = col_count * 1.0 + 6.0  # extra padding
     # Vertically center the Mealy machine relative to the state machine
     # Rows are separated by node_distance=7mm=0.7cm, going downward
     if topo_type == "Line":
