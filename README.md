@@ -97,6 +97,51 @@ Then include the generated file:
 
 See each tool's documentation for full argument reference and examples.
 
+## Copilot Skills
+
+This project includes three [GitHub Copilot skills](https://code.visualstudio.com/docs/copilot/copilot-customization) that let you generate diagrams through natural language in VS Code's Copilot Chat. The skills live in `.github/skills/` and are automatically picked up by Copilot.
+
+### Available Skills
+
+| Skill | Trigger phrases | What it does |
+|-------|----------------|--------------|
+| **generate-state-machine** | "create a line/grid/maze", "draw a state machine", "topology diagram" | Generates a state machine diagram via `generate_state_machine.py` with the right `--type`, `--size`, `--colors`, `--labels`, etc. |
+| **generate-mealy-machine** | "create a Mealy machine", "draw a transducer", "automaton with input/output" | Generates a Mealy machine diagram via `generate_mealy_machine.py` with `--states`, `--transitions`, colors, and labels |
+| **generate-from-input** | "generate from input file", "create combined diagram", "generate from spec" | Runs `generate_from_input.py` on a spec file to produce a state machine, Mealy machine, and combined diagram |
+
+### How to Use
+
+Open Copilot Chat in VS Code and describe what you want in plain English. Examples:
+
+- **"Create a line of size 15 with the first 3 states green"**
+  → Copilot runs `generate_state_machine.py --type Line --size 15 --colors "green,green,green,white,..."` and writes `state_machine_Line_15.txt`
+
+- **"Draw a maze of size 7 with goal state 8 green, state 0 red, no self-loops"**
+  → Copilot runs `generate_state_machine.py --type Maze --size 7 --colors "red,...,green,..." --no-self-loops`
+
+- **"Create a 3-state Mealy machine with transitions 0→1 on a/0, 1→2 on b/1, 2→0 on a/1"**
+  → Copilot runs `generate_mealy_machine.py --states 3 --transitions "0,1,a,0;1,2,b,1;2,0,a,1"`
+
+- **"Generate diagrams from input.txt"**
+  → Copilot runs `generate_from_input.py input.txt` and produces three output files
+
+### What You Can Specify
+
+For **state machines**, you can describe:
+- Topology type (Line, Grid, Maze) and size
+- State colors (e.g., "first 5 green", "state 12 red")
+- Custom labels (e.g., "labels are state number + 1", "random values 0–99")
+- Options like "no self-loops" or "no action labels"
+- Stacked copies with different color highlights
+
+For **Mealy machines**, you can describe:
+- Number of states
+- Transitions as from→to with input/output labels
+- State colors and custom labels
+
+For **combined diagrams**, you can provide:
+- A spec file path, or describe the transitions inline and Copilot will create the spec file for you
+
 ## Development
 
 This tool was developed entirely through AI-assisted generation. See [DEVELOPMENT_PROCESS.md](DEVELOPMENT_PROCESS.md) for details.
